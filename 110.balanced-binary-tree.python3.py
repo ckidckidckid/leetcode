@@ -56,11 +56,16 @@
 #         self.right = None
 
 class Solution:
+    table = {}
     def depth(self, node):
-        if node == None:
-            return 0
-        else:
-            return max(self.depth(node.left), self.depth(node.right)) + 1
+        h = node
+        if h in self.table:
+            return self.table[h]
+        ans = 0
+        if node != None:
+            ans = max(self.depth(node.left), self.depth(node.right)) + 1
+        self.table[h] = ans
+        return ans
 
     def isBalanced(self, root):
         """
