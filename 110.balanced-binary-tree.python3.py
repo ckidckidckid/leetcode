@@ -56,15 +56,10 @@
 #         self.right = None
 
 class Solution:
-    table = {}
     def depth(self, node):
-        h = node
-        if h in self.table:
-            return self.table[h]
         ans = 0
         if node != None:
             ans = max(self.depth(node.left), self.depth(node.right)) + 1
-        self.table[h] = ans
         return ans
 
     def isBalanced(self, root):
@@ -75,22 +70,3 @@ class Solution:
         if root is None:
             return True
         return abs(self.depth(root.left)-self.depth(root.right)) <= 1 and self.isBalanced(root.left) and self.isBalanced(root.right)
-
-
-        # def depth(node):
-        #     if node is None:
-        #         return {'l':0,'r':0}
-        #     else:
-        #         return {'l' : max(depth(node.left)['l'], depth(node.left)['r'])+1, 'r' :max(depth(node.right)['l'], depth(node.right)['r'])+1}
-        #
-        # def helper(node):
-        #     h = id(node)
-        #     o = None
-        #     if h in table:
-        #         o = table[h]
-        #     else:
-        #         o = depth(node)
-        #         table[h] = o
-        #     return abs(o['l'] - o['r']) <= 1 and ( node is None or (helper(node.left) and helper(node.right)))
-        # table = {}
-        # return helper(root)
