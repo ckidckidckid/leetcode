@@ -21,12 +21,6 @@
 # 
 # 
 #
-def printn(node):
-    print("---------")
-    while node is not None:
-        print(node.val)
-        node = node.next
-        
 class Solution:
     def reverse(self, head):
         if head is None:
@@ -61,15 +55,13 @@ class Solution:
             p2=curr
             curr=curr.next
 
-        # printn(dummy)
-        s = p1.next
+        # s = p1.next
         
-        p1.next = None
+        # p1.next = None
         p2.next = None
-        # printn(dummy)
 
-        h, t = self.reverse(s)
-        # printn(h)
+        h, t = self.reverse(p1.next)
+
         p1.next = h
         t.next = curr 
         return dummy.next
