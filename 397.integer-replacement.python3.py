@@ -61,12 +61,15 @@ class Solution:
         :rtype: int
         """
         def helper(n, count=0):
-            ans = 0
+            # if n in table:
+                # return table[n]
             if n==1:
                 ans = count
             elif n%2 == 0:
                 ans = helper(n/2, count+1)
             else:
                 ans = min(helper(n-1, count+1), helper(n+1, count+1))
+            # table[n] = ans
             return ans
+        table = {}
         return helper(n)
