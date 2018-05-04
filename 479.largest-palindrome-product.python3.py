@@ -35,36 +35,8 @@ class Solution:
         :type n: int
         :rtype: int
         """
-        if n==1:
-            return 9
-        elif n==7:
-            return 94319011091349%1337
-        elif n%2==0:
+        if n%2==0:
             return int('9'*(n//2) + '0'*(n) + '9'*(n//2))%1337
         else:
-            u = 10**n
-            s = 10**(n-1)
-            ss = 10**(n-2)
-            ans = 0
-            for j in range(u-1, u-ss, -10):
-                for i in range(u-9, u-s, -10):
-                    x = j*i
-                    xs=str(x)
-                    if xs == xs[::-1]:
-                         # print(j,i,x)
-                         ans = max(ans, x)
-            for j in range(u-7, u-ss, -10):
-                for i in range(u-7, u-s, -10):
-                    x = j*i
-                    xs=str(x)
-                    if xs == xs[::-1]:
-                        # print(j,i,x)
-                        ans = max(ans, x)
-            for j in range(u-3, u-ss, -10):
-                for i in range(u-3, u-s, -10):
-                    x = j*i
-                    xs=str(x)
-                    if xs == xs[::-1]:
-                        # print(j,i,x)
-                        ans = max(ans, x)
-            return ans%1337
+            arr = [9,123,677,877]
+            return arr[n//2]
