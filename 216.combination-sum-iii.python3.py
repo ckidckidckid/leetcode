@@ -38,12 +38,14 @@
 #
 #
 class Solution:
-    def combinationSum3(self, k, n, start = 1):
+    def combinationSum3(self, k, n, start = 1, table={}):
         """
         :type k: int
         :type n: int
         :rtype: List[List[int]]
         """
+        if (k,n,start) in table:
+            return table[(k,n,start)]
         if n == start and k==1:
             ans = [[start]]
         elif n < start or k<=0:
@@ -57,4 +59,5 @@ class Solution:
             sr2 = self.combinationSum3(k, n, start+1) if start < 9 else []
             ans += sr2
         # print("k={},n={},start={},ans={}".format(k,n,start, ans))
+        table[(k,n,start)] = ans
         return ans
