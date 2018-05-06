@@ -35,11 +35,16 @@ class Solution:
         """
         # Using Solution 2 from
         # https://www.programcreek.com/2015/04/leetcode-integer-break-java/
+
+        # Table lookup for n < 4
         if n < 4:
             table = [0,0,1,2]
             return table[n]
+        # If n-4 % 3 == 0 (ex, 7, 10, 13... ), then ans = 4*3*3*3
         elif (n-4)%3 == 0:
             return (3**((n-4)//3))*4
+        # For other cases, take out as many 3's as you can and multiply the
+        # remaining
         else:
             fac = n//3
             rem = n%3
