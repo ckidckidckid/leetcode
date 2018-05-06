@@ -47,12 +47,27 @@ class Solution:
         :type pairs: List[List[int]]
         :rtype: int
         """
-        tails = []
-        pairs.sort()
+        # Idea similar to Longest Increasing Subsequence solution.
+        # O(nlog(n)) time and O(n) space
+        # https://github.com/ckidckidckid/leetcode/blob/master/300.longest-increasing-subsequence.python3.py
+        ################################################################################
+
+        # tails = []
+        # pairs.sort()
+        # for pair in pairs:
+        #     idx = bisect_left(tails, pair[0])
+        #     if idx >= len(tails):
+        #         tails.append(pair[1])
+        #     if pair[1] < tails[idx]:
+        #         tails[idx] = pair[1]
+        # return len(tails)
+
+        # Greedy Solution; Faster ; O(nlog(n)) time though, but O(1) space
+        # https://leetcode.com/problems/maximum-length-of-pair-chain/discuss/105607/4-Liner-Python-Greedy
+
+        pairs.sort(key = lambda x : x[1])
+        cur, res = float('-inf'), 0
         for pair in pairs:
-            idx = bisect_left(tails, pair[0])
-            if idx >= len(tails):
-                tails.append(pair[1])
-            if pair[1] < tails[idx]:
-                tails[idx] = pair[1]
-        return len(tails)
+            if pair[0] > cur:
+                cur, res = pair[1], res+1
+        return res
