@@ -45,9 +45,10 @@ class Solution:
         :rtype: int
         """
         words.sort(key = len, reverse = True)
-        words = [word + '#' for word in words]
+        # words = [word + '#' for word in words]
         s = ''
         for word in words:
-            if word not in s:
-                s += word
+            st = word+'#'
+            if st not in s:
+                s += st
         return(len(s))
