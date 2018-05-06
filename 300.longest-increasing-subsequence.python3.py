@@ -29,7 +29,7 @@
 # Credits:Special thanks to @pbrother for adding this problem and creating all
 # test cases.
 #
-from bisect import *
+from bisect import bisect_left
 class Solution:
     def lengthOfLIS(self, nums):
         """
