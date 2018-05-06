@@ -51,7 +51,6 @@ class Solution:
         pairs.sort()
         for pair in pairs:
             idx = bisect_left(tails, pair[0])
-            # print(tails, idx)
             if idx >= len(tails):
                 tails.append(pair[1])
             if pair[1] < tails[idx]:
