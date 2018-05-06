@@ -81,5 +81,5 @@ class Solution:
                 s[i] = s[i-1]
                 rc += 1
             if s[i] == 1:
-                count += 2 - s[i]
+                count += 1
         return count
