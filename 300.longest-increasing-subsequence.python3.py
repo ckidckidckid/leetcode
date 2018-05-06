@@ -29,25 +29,19 @@
 # Credits:Special thanks to @pbrother for adding this problem and creating all
 # test cases.
 #
+from bisect import *
 class Solution:
     def lengthOfLIS(self, nums):
         """
         :type nums: List[int]
         :rtype: int
         """
-        n = len(nums)
-        if n==0:
-            return 0
-        if n==1:
-            return 1
-        arr = [1 for i in range(n)]
-        ans = 1
-        for i in range(1,n):
-            lm = 1
-            for j in range(i):
-                if nums[j] < nums[i]:
-                    lm = max(lm, arr[j]+1)
-            arr[i] = lm
-            ans = max(ans, lm)
-        print(arr)
-        return ans
+
+        tails = []
+        for num in nums:
+            pos = bisect_left(tails, num)
+            if pos == len(tails):
+                tails.append(num)
+            else:
+                tails[pos] = num
+        return len(tails)
