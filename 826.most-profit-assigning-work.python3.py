@@ -41,6 +41,9 @@
 # difficulty[i], profit[i], worker[i]  are in range [1, 10^5]
 #
 #
+
+print("Hello")
+
 from bisect import bisect_right
 class Solution:
     def maxProfitAssignment(self, difficulty, profit, worker):
