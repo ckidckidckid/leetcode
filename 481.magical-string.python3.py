@@ -70,16 +70,16 @@ class Solution:
         s = [-1 for _ in range(n)]
         s[0] = 1
         count = 1
-        rc = 1
+        running_count = 1
         ptr = 0
         for i in range(1,n):
-            if s[ptr] == rc:
+            if s[ptr] == running_count:
                 s[i] = 3 - s[i-1]
                 ptr += 1
-                rc = 1
+                running_count = 1
             else:
                 s[i] = s[i-1]
-                rc += 1
+                running_count += 1
             if s[i] == 1:
                 count += 1
         return count
