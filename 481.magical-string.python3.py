@@ -78,5 +78,6 @@ class Solution:
             else:
                 s[i] = s[i-1]
                 running_count += 1
-            count += 2 - s[i]
+            if s[i] == 1:
+                count += 2 - s[i]
         return count
