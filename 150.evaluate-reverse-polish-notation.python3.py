@@ -82,7 +82,6 @@ class Solution:
 
         st = []
         for x in tokens:
-            # print(st)
             if x in {'+', '-', '*', '/'}:
                 op2 = st.pop()
                 op1 = st.pop()
