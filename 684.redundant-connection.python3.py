@@ -74,7 +74,6 @@ class Solution:
 
         group = list(range(1001))
         for a,b in edges:
-            # print(grpup[0:6])
             ag = find_group(a)
             bg = find_group(b)
             if ag == bg:
