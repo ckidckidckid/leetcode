@@ -44,10 +44,30 @@ class Solution:
         :type words: List[str]
         :rtype: int
         """
-        words.sort(key = len, reverse = True)
-        s = ''
+# SIMPLE SOLUTION WORKS
+        # words.sort(key = len, reverse = True)
+        # s = ''
+        # for word in words:
+        #     st = word+'#'
+        #     if st not in s:
+        #         s += st
+        # return(len(s))
+
+# Trying Trie Based Solution
+        trie = {}
+
+        def find_size(root, acc):
+            if len(root) == 0:
+                return (acc+1)
+            ans = 0
+            for k in root:
+                ans += find_size(root[k], acc+1)
+            return ans
+
         for word in words:
-            st = word+'#'
-            if st not in s:
-                s += st
-        return(len(s))
+            root = trie
+            for c in word[::-1]:
+                if c not in root:
+                    root[c] = {}
+                root = root[c]
+        return find_size(trie, 0)
