@@ -45,7 +45,6 @@ class Solution:
         :rtype: int
         """
         words.sort(key = len, reverse = True)
-        # words = [word + '#' for word in words]
         s = ''
         for word in words:
             st = word+'#'
