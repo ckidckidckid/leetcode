@@ -42,8 +42,23 @@ class Solution:
         :type citations: List[int]
         :rtype: int
         """
-        citations.sort(reverse=True)
-        for i,val in enumerate(citations):
-            if citations[i] < i+1:
+        # O(nlog(n)) solution | about 40 ms / 63.3%
+        # citations.sort(reverse=True)
+        # for i,val in enumerate(citations):
+        #     if citations[i] < i+1:
+        #         return i
+        # return len(citations)
+
+        # O(n) with O(n) space solution; from
+        # leetcode.com/problems/h-index/discuss/70810/A-Clean-O(N)-Solution-in-Java/73014
+
+        n = len(citations)
+        citation_counts = [0 for _ in range(n+1)]
+        for c in citations:
+            citation_counts[min(n, c)]+=1
+        total = 0
+        for i in range(n, -1, -1):
+            total += citation_counts[i]
+            if total >= i:
                 return i
-        return len(citations)
+        return 0
