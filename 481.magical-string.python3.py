@@ -68,7 +68,9 @@ class Solution:
         if n == 0:
             return 0
         s = [-1 for _ in range(n)]
-        s[0] = count = running_count = 1
+        s[0] = 1
+        count = 1
+        running_count = 1
         ptr = 0
         for i in range(1,n):
             if s[ptr] == running_count:
