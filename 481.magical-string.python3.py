@@ -65,12 +65,6 @@ class Solution:
         :type n: int
         :rtype: int
         """
-        def other(x):
-            if x==1:
-                return 2
-            else:
-                return 1
-
         if n == 0:
             return 0
         s = [-1 for _ in range(n)]
@@ -80,7 +74,7 @@ class Solution:
         ptr = 0
         for i in range(1,n):
             if s[ptr] == rc:
-                s[i] = other(s[i-1])
+                s[i] = 3 - s[i-1]
                 ptr += 1
                 rc = 1
             else:
