@@ -73,8 +73,6 @@ class Solution:
 
         if n == 0:
             return 0
-        if n == 1:
-            return 1
         s = [-1 for _ in range(n)]
         s[0] = 1
         count = 1
@@ -88,4 +86,6 @@ class Solution:
             else:
                 s[i] = s[i-1]
                 rc += 1
-        return s.count(1)
+            if s[i] == 1:
+                count += 1
+        return count
