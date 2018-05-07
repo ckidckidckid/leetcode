@@ -53,8 +53,5 @@ class Solution:
                 s=sn
                 e = en
             e = max(e,en)
-            # for i in res:
-            #     print(i.start, i.end, end = '..')
-            # print('')
         res.append(Interval(s,e))
         return res
