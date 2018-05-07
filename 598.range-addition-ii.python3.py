@@ -65,8 +65,7 @@ class Solution:
             return 0
         if not ops:
             return m*n
-        r_min = float('inf')
-        c_min = float('inf')
+        r_min = c_min = float('inf')
         for op in ops:
             r_min, c_min = min(r_min, op[0]), min(c_min, op[1])
         return r_min * c_min
