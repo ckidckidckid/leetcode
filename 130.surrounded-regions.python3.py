@@ -72,9 +72,8 @@ class Solution:
             return
         m = len(board)
         n = len(board[0])
-        if n==0:
-            return
         visited = [[0 for _ in range(n)] for _ in range(m)]
+
         for j in range(n):
             if board[0][j] == 'O':
                 dfs(0,j)
