@@ -40,9 +40,9 @@ class Solution:
         :type fee: int
         :rtype: int
         """
+        # Excellent Explanation at https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/discuss/108870/Most-consistent-ways-of-dealing-with-the-series-of-stock-problems
+        # Also read about Kadane's Algorithm at https://leetcode.com/problems/best-time-to-buy-and-sell-stock/discuss/39038/kadanes-algorithm-since-no-one-has-mentioned-about-this-so-far-in-case-if-interviewer-twists-the-input
         T_ik0,T_ik1 = 0, -float('inf')
         for p in prices:
-            T_ik0_old = T_ik0
-            T_ik0 = max(T_ik0, T_ik1 + p)
-            T_ik1 = max(T_ik1, T_ik0_old - p - fee)
+            T_ik0, T_ik1 = max(T_ik0, T_ik1 + p), max(T_ik1, T_ik0 - p - fee)
         return T_ik0
