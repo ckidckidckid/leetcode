@@ -68,9 +68,9 @@ class Solution:
                 if visited[i_n][j_n] == 0 and board[i_n][j_n] == 'O':
                     dfs(i_n,j_n)
 
-        m = len(board)
-        if m==0:
+        if not any(board):
             return
+        m = len(board)
         n = len(board[0])
         if n==0:
             return
