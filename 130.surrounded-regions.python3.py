@@ -48,7 +48,7 @@ class Solution:
         :type board: List[List[str]]
         :rtype: void Do not return anything, modify board in-place instead.
         """
-        def neigbors(i,j, m, n):
+        def neigbors(i,j):
             res = []
             if i>0:
                 res.append((i-1,j))
@@ -61,12 +61,12 @@ class Solution:
             return res
 
 
-        def dfs(i,j, m, n, visited):
+        def dfs(i,j):
             visited[i][j] = 1
             board[i][j] = '-'
-            for i_n,j_n in neigbors(i,j,m,n):
+            for i_n,j_n in neigbors(i,j):
                 if visited[i_n][j_n] == 0 and board[i_n][j_n] == 'O':
-                    dfs(i_n,j_n,m,n,visited)
+                    dfs(i_n,j_n)
 
         m = len(board)
         if m==0:
@@ -77,15 +77,15 @@ class Solution:
         visited = [[0 for _ in range(n)] for _ in range(m)]
         for j in range(n):
             if board[0][j] == 'O':
-                dfs(0,j,m,n,visited)
+                dfs(0,j)
             if board[m-1][j] == 'O':
-                dfs(m-1,j,m,n,visited)
+                dfs(m-1,j)
 
         for i in range(1,m-1):
             if board[i][0] == 'O':
-                dfs(i,0,m,n,visited)
+                dfs(i,0)
             if board[i][n-1] == 'O':
-                dfs(i,n-1,m,n,visited)
+                dfs(i,n-1)
         for i in range(m):
             for j in range(n):
                 if board[i][j] == 'O':
