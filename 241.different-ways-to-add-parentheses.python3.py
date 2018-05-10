@@ -37,6 +37,8 @@
 #
 #
 import re
+from functools import lru_cache
+
 class Solution:
     def apply_op(self, x1, x2, op):
         ans = 0
@@ -48,6 +50,7 @@ class Solution:
             ans = x1 - x2
         return ans
 
+    @lru_cache(maxsize = 1024)
     def diffWaysToCompute(self, input):
         """
         :type input: str
