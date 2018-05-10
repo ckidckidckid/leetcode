@@ -86,7 +86,7 @@ class Solution:
         # root.right = right_sub
         # return root
 
-        # Iterative Solution; from
+        # Faster iterative Solution (60ms, 96%); from
         # https://leetcode.com/problems/trim-a-binary-search-tree/discuss/107026/Java-solution-iteration-version
 
         while root is not None and not L <= root.val <= R:
