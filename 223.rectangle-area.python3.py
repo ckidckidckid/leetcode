@@ -40,15 +40,14 @@ class Solution:
         :type H: int
         :rtype: int
         """
-        a1 = abs(C-A) * abs(D-B)
-        a2 = abs(G-E) * abs(H-F)
-        a3 = 0
-        if ((A <= E <= C) or (E < A < G)) and ((B <= F <= D) or (F <= B <= H)):
-            left = min(A,E)
-            right = max(C,G)
-            bottom = min(B,F)
-            top = max(D,H)
+        a1 = (C-A) * (D-B)
+        a2 = (G-E) * (H-F)
 
-            a3 = abs((right-left)-(C-A)-(G-E)) * abs((top-bottom)-(D-B)-(H-F))
+        left = max(A,E)
+        right = min(C,G)
+        bottom = max(B,F)
+        top = min(D,H)
+
+        a3 = (right-left) * (top-bottom) if (right>left and top>bottom) else 0
 
         return a1+a2-a3
