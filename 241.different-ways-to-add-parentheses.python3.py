@@ -39,6 +39,9 @@
 import re
 from functools import lru_cache
 
+
+# # IDEA: from https://leetcode.com/problems/different-ways-to-add-parentheses/discuss/66419/Python-easy-to-understand-solution-(divide-and-conquer).
+
 class Solution:
     def apply_op(self, x1, x2, op):
         ans = 0
