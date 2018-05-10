@@ -62,7 +62,6 @@ class Solution:
             en=n-1
         while en>=st:
             mid = (st + (en - st)//2)
-            print(st, en, mid)
             if nums[mid] == target:
                 return True
             elif nums[mid] > target:
