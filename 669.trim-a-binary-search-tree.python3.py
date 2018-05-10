@@ -71,15 +71,38 @@ class Solution:
         :type R: int
         :rtype: TreeNode
         """
-        # Recursive Solution
-        if root is None:
-            return None
-        left_sub = self.trimBST(root.left, L, R)
-        right_sub = self.trimBST(root.right, L, R)
-        if root.val > R:
-            return left_sub
-        elif root.val < L:
-            return right_sub
-        root.left = left_sub
-        root.right = right_sub
+        # Recursive Solution (72ms, 33%); from
+        # https://leetcode.com/problems/trim-a-binary-search-tree/discuss/107000/Java-solution-6-liner
+
+        # if root is None:
+        #     return None
+        # left_sub = self.trimBST(root.left, L, R)
+        # right_sub = self.trimBST(root.right, L, R)
+        # if root.val > R:
+        #     return left_sub
+        # elif root.val < L:
+        #     return right_sub
+        # root.left = left_sub
+        # root.right = right_sub
+        # return root
+
+        # Iterative Solution; from
+        # https://leetcode.com/problems/trim-a-binary-search-tree/discuss/107026/Java-solution-iteration-version
+
+        while root is not None and not L <= root.val <= R:
+            if root.val < L:
+                root=root.right
+            if root.val > R:
+                root = root.left
+        dummy = root
+        while dummy is not None:
+            while dummy.left is not None and dummy.left.val < L:
+                dummy.left = dummy.left.right
+            dummy = dummy.left
+
+        dummy = root
+        while dummy is not None:
+            while dummy.right is not None and dummy.right.val > R:
+                dummy.right = dummy.right.left
+            dummy = dummy.right
         return root
