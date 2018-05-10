@@ -92,7 +92,7 @@ class Solution:
         while root is not None and not L <= root.val <= R:
             if root.val < L:
                 root=root.right
-            if root.val > R:
+            elif root.val > R:
                 root = root.left
         dummy = root
         while dummy is not None:
