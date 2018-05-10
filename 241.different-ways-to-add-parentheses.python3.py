@@ -50,7 +50,7 @@ class Solution:
             ans = x1 - x2
         return ans
 
-    @lru_cache(maxsize = 1024)
+    @lru_cache(maxsize = 10000)
     def diffWaysToCompute(self, input):
         """
         :type input: str
