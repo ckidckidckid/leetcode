@@ -75,9 +75,9 @@ class Solution:
         # Attempting bottom up apprach; much faster
         # ========================================
         n = len(cost)
-        p,c = 0,0
+        prev = curr = 0
         for i in range(2,n+1):
-            t = c
-            c = min(cost[i-1]+c, cost[i-2] + p)
-            p = t
-        return c
+            temp = curr
+            curr = min(cost[i-1]+curr, cost[i-2] + prev)
+            prev = temp
+        return curr
