@@ -63,7 +63,19 @@ class Solution:
         :type cost: List[int]
         :rtype: int
         """
-        if cost is None or len(cost) <= 2:
-            return 0
-        table = {}
-        return min(self.helper(cost, table), self.helper(cost[1:], table))
+        # ========================================
+        # Recursive; Accepted but very very slow
+        # ========================================
+        # if cost is None or len(cost) <= 2:
+        #     return 0
+        # table = {}
+        # return min(self.helper(cost, table), self.helper(cost[1:], table))
+
+        # ========================================
+        # Attempting bottom up apprach
+        # ========================================
+        n = len(cost)
+        ans = [0 for _ in range(n+1)]
+        for i in range(2,n+1):
+            ans[i] = min(cost[i-1]+ans[i-1], cost[i-2] + ans[i-2])
+        return ans[-1]
