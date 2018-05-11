@@ -49,7 +49,8 @@ class Solution:
         :type bits: List[int]
         :rtype: bool
         """
-        # Optimal : looks only at the tail of the array
+        # Optimal : looks only at the tail of the array (but still 36ms, 94% :()
+        # https://leetcode.com/problems/1-bit-and-2-bit-characters/discuss/108967/JAVA-check-only-the-end-of-array
         n = len(bits)
         if bits[-1] == 1:
             return False
