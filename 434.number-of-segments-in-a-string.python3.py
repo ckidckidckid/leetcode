@@ -29,10 +29,10 @@ class Solution:
         """
         st = -1
         ans = 0
-        for i,c in enumerate(s):
+        for c in s:
             if c!= ' ':
                 if st == -1:
-                    st = i
+                    st = 1
                     ans += 1
             else:
                 if st != -1:
