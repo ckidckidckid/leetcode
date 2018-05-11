@@ -36,19 +36,13 @@ class Solution:
         :type rowIndex: int
         :rtype: List[int]
         """
-        if rowIndex == 0:
-            return [1]
-        p = [1 for _ in range(rowIndex+1)]
         c = [1 for _ in range(rowIndex+1)]
-        pi,ci = 0,1
+        ci = 1
         while ci < rowIndex:
             ci+=1
-            pi+=1
             o = 1
             for i in range(1,ci):
                 t = c[i]
                 c[i] = o + c[i]
                 o = t
-            # p = c[:]
-            print(c,ci)
         return c
