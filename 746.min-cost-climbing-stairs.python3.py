@@ -72,10 +72,11 @@ class Solution:
         # return min(self.helper(cost, table), self.helper(cost[1:], table))
 
         # ========================================
-        # Attempting bottom up apprach
+        # Attempting bottom up apprach; much faster
         # ========================================
         n = len(cost)
-        ans = [0 for _ in range(n+1)]
+        ans = [None] * (n+1)
+        ans[0] = ans[1] = 0
         for i in range(2,n+1):
             ans[i] = min(cost[i-1]+ans[i-1], cost[i-2] + ans[i-2])
         return ans[-1]
