@@ -75,7 +75,9 @@ class Solution:
         # Attempting bottom up apprach; much faster
         # ========================================
         n = len(cost)
-        ans = [0 for _ in range(n+1)]
+        p,c = 0,0
         for i in range(2,n+1):
-            ans[i] = min(cost[i-1]+ans[i-1], cost[i-2] + ans[i-2])
-        return ans[-1]
+            t = c
+            c = min(cost[i-1]+c, cost[i-2] + p)
+            p = t
+        return c
