@@ -49,13 +49,27 @@ class Solution:
         :type bits: List[int]
         :rtype: bool
         """
+        # Optimal : looks only at the tail of the array
         n = len(bits)
-        i=0
-        while i < n:
-            if i==n-1:
-                return True
-            if bits[i] == 1:
-                i+=2
-            else:
-                i+=1
-        return False
+        if bits[-1] == 1:
+            return False
+        count = 0
+        for i in range(n-2, -1, -1):
+            if bits[i] != 1:
+                break
+            count+=1
+        return count%2 == 0
+
+        # =======================================================
+        # original 36ms; 94% solution; but scans the entire array
+        # =======================================================
+        # n = len(bits)
+        # i=0
+        # while i < n:
+        #     if i==n-1:
+        #         return True
+        #     if bits[i] == 1:
+        #         i+=2
+        #     else:
+        #         i+=1
+        # return False
