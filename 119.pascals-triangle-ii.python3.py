@@ -40,9 +40,9 @@ class Solution:
         ci = 1
         while ci < rowIndex:
             ci+=1
-            o = 1
+            old_val = 1
             for i in range(1,ci):
-                t = c[i]
-                c[i] = o + c[i]
-                o = t
+                curr_val = c[i]
+                c[i] = old_val + c[i]
+                old_val = curr_val
         return c
