@@ -34,7 +34,6 @@ class Solution:
                 if st == -1:
                     st = 1
                     ans += 1
-            else:
-                if st != -1:
-                    st = -1
+            elif st != -1:
+                st = -1
         return ans
