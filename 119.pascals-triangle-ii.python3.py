@@ -44,8 +44,11 @@ class Solution:
         while ci < rowIndex:
             ci+=1
             pi+=1
-            for i in range(ci-1):
-                c[i+1] = p[i] + p[i+1]
-            p = c[:]
-            # print(p,pi,c,ci)
+            o = 1
+            for i in range(1,ci):
+                t = c[i]
+                c[i] = o + c[i]
+                o = t
+            # p = c[:]
+            print(c,ci)
         return c
