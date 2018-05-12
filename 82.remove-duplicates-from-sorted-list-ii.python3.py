@@ -40,18 +40,16 @@ class Solution:
         :rtype: ListNode
         """
 
-        sentinel = ListNode(None)
+        prev = sentinel = ListNode(None)
         sentinel.next = head
 
-        en = sentinel
-        h = head
-        while h and h.next:
-            if h.val != h.next.val:
-                en = h
+        while head and head.next:
+            if head.val != head.next.val:
+                prev = head
             else:
-                while h.next and h.val == h.next.val:
-                    h=h.next
-                en.next = h.next
-            h = h.next
+                while head.next and head.val == head.next.val:
+                    head=head.next
+                prev.next = head.next
+            head = head.next
 
         return sentinel.next
