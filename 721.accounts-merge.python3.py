@@ -80,13 +80,13 @@ class Solution:
                 graph[prev].add(email)
                 prev = email
 
-        def do_dfs(email):
+        def dfs(email):
             res = [email]
             for child in graph[email]:
                 if child not in email_name_lookup:
                     continue
                 del email_name_lookup[child]
-                res.extend(do_dfs(child))
+                res.extend(dfs(child))
             return res
 
         # Do DFS traversal
@@ -96,6 +96,13 @@ class Solution:
                 continue
             name = email_name_lookup[email]
             del email_name_lookup[email]
-            email_list = do_dfs(email)
+            email_list = dfs(email)
             ans.append([name] + sorted(email_list))
         return ans
+
+# Problem can be solved with both UnionFind  and DFS/BFS traversal. I solved ^ using
+# DFS traversal after constructing the graph as it is simpler.
+
+# Good discussions on DFS traversal
+# https://leetcode.com/problems/accounts-merge/discuss/109162/Summary-for-DFS-Templates
+# https://leetcode.com/problems/accounts-merge/discuss/109158/Java-Solution-(Build-graph-+-DFS-search)
