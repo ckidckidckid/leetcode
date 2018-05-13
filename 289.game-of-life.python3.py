@@ -64,8 +64,10 @@ class Solution:
             return
         m = len(board)
         n = len(board[0])
-        top_row = [0 for _ in range(n)]
 
+        # In place modification by keeping track of only top row and left value
+
+        top_row = [0 for _ in range(n)]
         for i in range(m):
             left_val = 0
             temp = board[i][:]
@@ -77,7 +79,6 @@ class Solution:
                 top_pop = sum(top_row[max(0, j-1):min(n, j+2)])
                 bottom_pop = sum(board[i+1][max(0, j-1):min(n, j+2)]) if i<m-1 else 0
 
-                # print(i,j,left_pop,right_pop,top_pop, bottom_pop)
                 neighbor_pop = left_pop + right_pop + top_pop + bottom_pop
 
                 if board[i][j] == 0:
@@ -88,3 +89,14 @@ class Solution:
                         board[i][j] = 0
                 left_val = temp_left
             top_row = temp
+
+# Interesting approach to solve inplace by saving the information in two least significant bits discussion at
+# https://leetcode.com/problems/game-of-life/discuss/73223/Easiest-JAVA-solution-with-explanation
+# KEEP IN MIND THAT INT CAN HOLD 64 bit of INFO
+
+# Discussions on follow ups
+# https://leetcode.com/problems/game-of-life/discuss/73217/Infinite-board-solution
+# https://leetcode.com/problems/game-of-life/discuss/73241/What-does-the-follow-up-mean-by-%22encroaches-the-border-of-the-array%22
+
+# For 2nd folow up, we cannot compute `m` and `n` and the board will be represented as set of live co-ordinates i.e
+# live = {(0,0), {1,1}, ..}
