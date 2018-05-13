@@ -42,7 +42,9 @@
 #         self.left = None
 #         self.right = None
 
+from functools import lru_cache
 class Solution:
+    @lru_cache(maxsize = 10000)
     def helper(self, n, s=1):
         ans = []
         if n<s:
