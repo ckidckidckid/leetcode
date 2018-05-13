@@ -65,17 +65,12 @@ class Solution:
         :rtype: int
         """
         n = len(nums)
-        if n<=2:
-            return n
         seen_twice = False
         write_idx = 1
         for i in range(1,n):
-            if nums[i] != nums[i-1]:
+            equal_to_prev = nums[i] == nums[i-1]
+            if not equal_to_prev or not seen_twice:
                 nums[write_idx] = nums[i]
                 write_idx+=1
-                seen_twice = False
-            elif not seen_twice:
-                nums[write_idx] = nums[i]
-                write_idx+=1
-                seen_twice = True
-        return write_idx
+                seen_twice = equal_to_prev
+        return min(n,write_idx)
