@@ -41,6 +41,8 @@ class NumArray:
     # https://leetcode.com/submissions/detail/154001816/
     # Better solution O(log(n)) for both update/aggregation based on Binary INdexed Tree
     # https://leetcode.com/problems/range-sum-query-mutable/discuss/75753/Java-using-Binary-Indexed-Tree-with-clear-explanation
+    # https://cs.stackexchange.com/questions/10538/bit-what-is-the-intuition-behind-a-binary-indexed-tree-and-how-was-it-thought-a
+    # https://www.topcoder.com/community/data-science/data-science-tutorials/binary-indexed-trees/
     def _set_bit(self, i, val):
         i+=1
         while(i<=self.n):
@@ -52,7 +54,6 @@ class NumArray:
         while i>0:
             sum += self.BIT[i]
             i -= i&-i
-        # print(i,sum)
         return sum
 
     def __init__(self, nums):
@@ -64,7 +65,6 @@ class NumArray:
         self.BIT = [0]*(self.n+1)
         for i,val in enumerate(nums):
             self._set_bit(i, val)
-        # print(self.BIT)
 
     def update(self, i, val):
         """
