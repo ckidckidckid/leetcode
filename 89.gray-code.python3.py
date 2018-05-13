@@ -56,9 +56,10 @@ class Solution:
         #   7      2**2 + 3     |
         #   5      2**2 + 1     |
         #   4      2**2 + 0     |
+        #  But same performance as previous one
         res = [0]
         for i in range(n):
-            res += [ x | (1<<i) for x in res[::-1]]
+            res += [ x + 2**i for x in res[::-1]]
         return res
 
 
