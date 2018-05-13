@@ -59,7 +59,7 @@ class Solution:
         #  But same performance as previous one
         res = [0]
         for i in range(n):
-            res += [ x + 2**i for x in res[::-1]]
+            res += [ 2**i + x for x in res[::-1]]
         return res
 
 
