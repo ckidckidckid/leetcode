@@ -50,7 +50,7 @@ class Solution:
         change_bit = [0]
         max_bit = 1
         while int(math.log(len(change_bit)+1, 2)) < n:
-            change_bit.extend([max_bit] + change_bit)
+            change_bit += [max_bit] + change_bit
             max_bit+=1
         ans = ['{:032b}'.format(0)]
         for c in change_bit:
