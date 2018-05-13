@@ -42,25 +42,50 @@ class Solution:
         :type l2: ListNode
         :rtype: ListNode
         """
-        def str_to_list(s,h=None,t=None):
-            if len(s) == 0:
-                return h
-            else:
-                if h is None:
-                    h = t = ListNode(int(s[0]))
-                else:
-                    t.next = ListNode(int(s[0]))
-                    t = t.next
-                return str_to_list(s[1:], h, t)
+        # Solution without cheating, using stack
+        # https://leetcode.com/problems/add-two-numbers-ii/discuss/92623/Easy-O(n)-Java-Solution-using-Stack
 
-        def list_to_int(node, acc=0):
-            if node is None:
-                return acc
-            else:
-                return list_to_int(node.next, acc*10+node.val)
-                
-        n1 = list_to_int(l1)
-        n2 = list_to_int(l2)
-        n = n1+n2
+        s1, s2 = [],[]
+        while l1:
+            s1.append(l1.val)
+            l1=l1.next
+        while l2:
+            s2.append(l2.val)
+            l2=l2.next
 
-        return str_to_list(str(n))
+        s = 0
+        ll = ListNode(0)
+        while s1 or s2:
+            s += (s1.pop() if s1 else 0) + (s2.pop() if s2 else 0)
+            ll.val = s%10
+            head = ListNode(s//10)
+            head.next = ll
+            s //= 10
+            ll = head
+
+        return ll if ll.val != 0 else ll.next
+
+
+        # Solves the problem accepted, but cheating since the numbers may be too big
+        # def str_to_list(s,h=None,t=None):
+        #     if len(s) == 0:
+        #         return h
+        #     else:
+        #         if h is None:
+        #             h = t = ListNode(int(s[0]))
+        #         else:
+        #             t.next = ListNode(int(s[0]))
+        #             t = t.next
+        #         return str_to_list(s[1:], h, t)
+        #
+        # def list_to_int(node, acc=0):
+        #     if node is None:
+        #         return acc
+        #     else:
+        #         return list_to_int(node.next, acc*10+node.val)
+        #
+        # n1 = list_to_int(l1)
+        # n2 = list_to_int(l2)
+        # n = n1+n2
+        #
+        # return str_to_list(str(n))
