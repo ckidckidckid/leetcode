@@ -53,14 +53,12 @@ class Solution:
                     t = t.next
                 return str_to_list(s[1:], h, t)
 
-
-
-
         def list_to_int(node, acc=0):
             if node is None:
                 return acc
             else:
                 return list_to_int(node.next, acc*10+node.val)
+                
         n1 = list_to_int(l1)
         n2 = list_to_int(l2)
         n = n1+n2
