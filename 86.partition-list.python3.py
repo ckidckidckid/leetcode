@@ -36,18 +36,21 @@ class Solution(object):
         :type x: int
         :rtype: ListNode
         """
+        # Single pass O(n) time; O(1) space solution
         dummy_small = ListNode(None)
         dummy_large = ListNode(None)
         s = dummy_small
         l = dummy_large
         while head is not None:
-            if head.val < x:
-                s.next = ListNode(head.val)
+            oh = head
+            head = head.next
+            if oh.val < x:
+                s.next = oh
                 s = s.next
             else:
-                l.next = ListNode(head.val)
+                l.next = oh
                 l = l.next
-            head = head.next
+            oh.next = None
 
         s.next = dummy_large.next
         return dummy_small.next
