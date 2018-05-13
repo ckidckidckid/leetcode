@@ -33,13 +33,38 @@
 #
 #
 #
+
+
 class NumArray:
+
+    # Trivial solutions is accepted i.e O(1) update/O(n) aggregation
+    # https://leetcode.com/submissions/detail/154001816/
+    # Better solution O(log(n)) for both update/aggregation based on Binary INdexed Tree
+    # https://leetcode.com/problems/range-sum-query-mutable/discuss/75753/Java-using-Binary-Indexed-Tree-with-clear-explanation
+    def _set_bit(self, i, val):
+        i+=1
+        while(i<=self.n):
+            self.BIT[i] += val
+            i += i&-i
+
+    def _get_cum_sum(self, i):
+        sum=0
+        while i>0:
+            sum += self.BIT[i]
+            i -= i&-i
+        # print(i,sum)
+        return sum
 
     def __init__(self, nums):
         """
         :type nums: List[int]
         """
+        self.n = len(nums)
         self.nums = nums
+        self.BIT = [0]*(self.n+1)
+        for i,val in enumerate(nums):
+            self._set_bit(i, val)
+        # print(self.BIT)
 
     def update(self, i, val):
         """
@@ -47,7 +72,10 @@ class NumArray:
         :type val: int
         :rtype: void
         """
+        diff = val-self.nums[i]
         self.nums[i] = val
+        self._set_bit(i, diff)
+
 
 
     def sumRange(self, i, j):
@@ -56,7 +84,7 @@ class NumArray:
         :type j: int
         :rtype: int
         """
-        return sum(self.nums[i:j+1])
+        return self._get_cum_sum(j+1) - self._get_cum_sum(i)
 
 
 
