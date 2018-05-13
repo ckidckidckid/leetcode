@@ -65,7 +65,7 @@ class Solution:
         :rtype: int
         """
         n = len(nums)
-        seen_twice = False
+        equal_to_prev = seen_twice = False
         write_idx = 1
         for i in range(1,n):
             equal_to_prev = nums[i] == nums[i-1]
