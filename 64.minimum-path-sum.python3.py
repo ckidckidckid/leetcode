@@ -45,4 +45,4 @@ class Solution:
                     grid[i][j] = grid[i-1][j] + c
                 else:
                     grid[i][j] = min(grid[i-1][j], grid[i][j-1]) + c
-        return grid[-1][-1] if any(grid) else 0
+        return grid[-1][-1]
