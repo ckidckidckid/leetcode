@@ -32,7 +32,6 @@ class Solution:
         :rtype: List[List[int]]
         """
 
-        current_dir = 'r'
         next_pos = {
             'r' : lambda x,y: (x,y+1),
             'd' : lambda x,y: (x+1,y),
@@ -40,26 +39,24 @@ class Solution:
             'u' : lambda x,y: (x-1,y),
         }
 
-        change_dir = {
-            'r' : lambda x,y: (x,y+1),
-            'd' : lambda x,y: (x+1,y),
-            'l' : lambda x,y: (x,y-1),
-            'u' : lambda x,y: (x-1,y),
+        should_change_dir = {
+            'r' : lambda x,y,matrix: y==n-1 or matrix[x][y+1] != -1,
+            'd' : lambda x,y,matrix: x==n-1 or matrix[x+1][y] != -1,
+            'l' : lambda x,y,matrix: y==n-1 or matrix[x][y-1] != -1,
+            'u' : lambda x,y,matrix: x==n-1 or matrix[x-1][y] != -1
         }
 
+        next_state = {'r':'d', 'd':'l', 'l':'u', 'u':'r'}
+
+        current_dir = 'r'
         matrix = [[-1 for _ in range(n)] for _ in range(n)]
+
         i=j=0
         c=1
         while c <= n*n:
             matrix[i][j] = c
             c+=1
-            if current_dir=='r' and (j==n-1 or matrix[i][j+1] != -1):
-                current_dir = 'd'
-            elif current_dir=='d' and (i==n-1 or matrix[i+1][j] != -1):
-                current_dir = 'l'
-            elif current_dir=='l' and (j==0 or matrix[i][j-1] != -1):
-                current_dir = 'u'
-            elif current_dir=='u' and (i==0 or matrix[i-1][j] != -1):
-                current_dir = 'r'
+            if should_change_dir[current_dir](i,j,matrix):
+                current_dir = next_state[current_dir]
             i,j = next_pos[current_dir](i, j)
         return matrix
