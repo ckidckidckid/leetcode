@@ -36,7 +36,6 @@ class Solution:
         i = len(splits)-1
         ans = []
         skip=0
-        # print(splits)
         while i>=0:
             if not splits[i] or splits[i] == '.':
                 pass
