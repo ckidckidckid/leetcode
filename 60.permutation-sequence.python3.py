@@ -59,8 +59,8 @@ class Solution:
         ans = ''
         k-=1
         while available:
-            n = len(available)
-            idx = (k)//fact[n-1]
-            ans += available.pop(idx)
-            k=((k)%fact[n-1])
+            ac   =  len(available)-1
+            idx =   k // fact[ac]
+            k   =   k % fact[ac]
+            ans +=  available.pop(idx)
         return ans
