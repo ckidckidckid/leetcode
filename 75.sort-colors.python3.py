@@ -42,24 +42,39 @@ class Solution:
         :type nums: List[int]
         :rtype: void Do not return anything, modify nums in-place instead.
         """
-        i,li, ri = 0,0, len(nums)-1
-
-        while True:
-            while ri >= 0 and nums[ri] == 2:
-                ri-=1
-            while li < len(nums) and nums[li] == 0:
-                li+=1
-            i=max(i,li)
-            if not i <= ri:
-                break
-            if nums[i] == 2:
-                nums[i],nums[ri] = nums[ri],nums[i]
-                ri-=1
+        i,li,ri=0,0,len(nums)-1
+        while i<=ri:
+            if nums[i] == 1:
+                i+=1
             elif nums[i] == 0:
-                nums[i],nums[li] = nums[li],nums[i]
+                nums[i],nums[li]=nums[li],nums[i]
+                i+=1
                 li+=1
             else:
-                i+=1
+                nums[i],nums[ri]=nums[ri],nums[i]
+                ri-=1
+
+        # ========================================================
+        # Original Solution
+        # ========================================================
+        # i,li, ri = 0,0, len(nums)-1
+        #
+        # while True:
+        #     while ri >= 0 and nums[ri] == 2:
+        #         ri-=1
+        #     while li < len(nums) and nums[li] == 0:
+        #         li+=1
+        #     i=max(i,li)
+        #     if not i <= ri:
+        #         break
+        #     if nums[i] == 2:
+        #         nums[i],nums[ri] = nums[ri],nums[i]
+        #         ri-=1
+        #     elif nums[i] == 0:
+        #         nums[i],nums[li] = nums[li],nums[i]
+        #         li+=1
+        #     else:
+        #         i+=1
 
 # Alternate interpretation at
 # https://leetcode.com/problems/sort-colors/discuss/26481/Python-O(n)-1-pass-in-place-solution-with-explanation
