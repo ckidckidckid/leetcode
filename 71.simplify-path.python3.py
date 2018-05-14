@@ -26,17 +26,12 @@
 #
 #
 #
-import re
 class Solution:
     def simplifyPath(self, path):
         """
         :type path: str
         :rtype: str
         """
-        # path = path.replace('//', '/').replace('/./', '/')
-        # path = re.sub(r'/+$', '', path)
-        # path = re.sub(r'.?/', '', path)
-        # print(path)
         splits = path.split('/')
         i = len(splits)-1
         ans = []
@@ -47,11 +42,10 @@ class Solution:
                 pass
             elif splits[i] == '..':
                 skip+=1
+            elif skip==0:
+                ans.append(splits[i])
             else:
-                if skip==0:
-                    ans.append(splits[i])
-                else:
-                    skip-=1
+                skip-=1
             i-=1
         comp_path = '/' + '/'.join(ans[::-1])
         return comp_path
