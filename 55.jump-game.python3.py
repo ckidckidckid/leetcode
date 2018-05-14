@@ -49,7 +49,6 @@ class Solution:
             reach = max(reach, i+n)
             if n==0 and reach<i+1:
                 return False
-        return True
         # =============================================
         # Correct, but not Accepted: Times out
         # =============================================
