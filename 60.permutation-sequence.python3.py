@@ -60,7 +60,6 @@ class Solution:
         k-=1
         while available:
             ac   =  len(available)-1
-            idx =   k // fact[ac]
-            k   =   k % fact[ac]
+            idx, k =    divmod(k, fact[ac])
             ans +=  available.pop(idx)
         return ans
