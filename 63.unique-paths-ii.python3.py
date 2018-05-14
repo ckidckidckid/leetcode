@@ -49,8 +49,6 @@ class Solution:
         :type obstacleGrid: List[List[int]]
         :rtype: int
         """
-        if not any(obstacleGrid):
-            return 0
         m = len(obstacleGrid)
         n = len(obstacleGrid[0])
 
