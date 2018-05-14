@@ -64,21 +64,21 @@ class Solution:
         """
         def fill(x,y):
             for j in range(n):
-                if matrix[x][j] == float('inf'):
+                if matrix[x][j] == None:
                     continue
                 if matrix[x][j] == 0:
-                    matrix[x][j] = float('inf')
+                    matrix[x][j] = None
                     fill(x,j)
                 else:
-                    matrix[x][j] = float('inf')
+                    matrix[x][j] = None
             for i in range(m):
-                if matrix[i][y] == float('inf'):
+                if matrix[i][y] == None:
                     continue
                 if matrix[i][y] == 0:
-                    matrix[i][y] = float('inf')
+                    matrix[i][y] = None
                     fill(i,y)
                 else:
-                    matrix[i][y] = float('inf')
+                    matrix[i][y] = None
 
 
         if not any(matrix):
@@ -89,10 +89,10 @@ class Solution:
         for i in range(m):
             for j in range(n):
                 if matrix[i][j] == 0:
-                    matrix[i][j] = float('inf')
+                    matrix[i][j] = None
                     fill(i,j)
 
         for i in range(m):
             for j in range(n):
-                if matrix[i][j] == float('inf'):
+                if matrix[i][j] == None:
                     matrix[i][j] = 0
