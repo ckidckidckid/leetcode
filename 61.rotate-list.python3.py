@@ -56,10 +56,10 @@ class Solution:
             count+=1
             prev = t
             t = t.next
-        k = k%count
+        k = count - (k%count)
         fwd = head
         prev.next = fwd
-        for i in range(count-k):
+        for i in range(k):
             fwd = fwd.next
             prev = prev.next
         prev.next = None
