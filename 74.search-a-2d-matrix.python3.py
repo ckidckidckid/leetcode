@@ -57,16 +57,14 @@ class Solution:
         m=len(matrix)
         n=len(matrix[0])
 
-        unpack = lambda x: (x//n, x%n)
         lo = 0
         hi = m*n-1
         while lo<=hi:
-            m = lo + (hi-lo)//2
-            u_m = unpack(m)
-            if matrix[u_m[0]][u_m[1]] == target:
+            mid = lo + (hi-lo)//2
+            if matrix[mid//n][mid%n] == target:
                 return True
-            elif matrix[u_m[0]][u_m[1]] < target:
-                lo=m+1
+            elif matrix[mid//n][mid%n] < target:
+                lo=mid+1
             else:
-                hi=m-1
+                hi=mid-1
         return False
