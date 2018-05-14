@@ -42,9 +42,6 @@ class Solution:
         :type nums: List[int]
         :rtype: void Do not return anything, modify nums in-place instead.
         """
-        if not any(nums):
-            return
-
         i,li, ri = 0,0, len(nums)-1
 
         while True:
@@ -53,7 +50,6 @@ class Solution:
             while li < len(nums) and nums[li] == 0:
                 li+=1
             i=max(i,li)
-            # print(nums, li, ri, i)
             if not i <= ri:
                 break
             if nums[i] == 2:
@@ -64,3 +60,6 @@ class Solution:
                 li+=1
             else:
                 i+=1
+
+# Alternate interpretation at
+# https://leetcode.com/problems/sort-colors/discuss/26481/Python-O(n)-1-pass-in-place-solution-with-explanation
