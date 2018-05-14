@@ -54,13 +54,13 @@ class Solution:
         :type k: int
         :rtype: str
         """
-        f_table = [1,1,2,6,24,120,720,5040,40320,362880, 3628800]
-        table = [x for x in range(1,n+1)]
+        fact = [1,1,2,6,24,120,720,5040,40320,362880, 3628800]
+        available = [str(x) for x in range(1,n+1)]
         ans = ''
-        while table:
-            n = len(table)
-            idx = (k-1)//f_table[n-1]
-            val = table.pop(idx)
-            ans += str(val)
-            k=((k-1)%f_table[n-1]) + 1
+        k-=1
+        while available:
+            n = len(available)
+            idx = (k)//fact[n-1]
+            ans += available.pop(idx)
+            k=((k)%fact[n-1])
         return ans
