@@ -43,12 +43,12 @@ class Solution:
         :rtype: bool
         """
         reach = 0
-        for i,n in enumerate(nums):
-            if i==len(nums)-1:
-                return True
-            reach = max(reach, i+n)
-            if n==0 and reach<i+1:
+        n = len(nums)
+        for i in range(n):
+            reach = max(reach, i+nums[i])
+            if i!=n-1 and nums[i]==0 and reach<i+1:
                 return False
+        return True
         # =============================================
         # Correct, but not Accepted: Times out
         # =============================================
