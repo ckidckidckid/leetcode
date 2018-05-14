@@ -82,7 +82,6 @@ class Solution:
         def inorder_edit(node):
             if node.left:
                 inorder_edit(node.left)
-            print(node.val, s[0])
             node.val = ino[s[0]]
             s[0]+=1
             if node.right:
