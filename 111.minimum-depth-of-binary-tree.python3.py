@@ -43,6 +43,24 @@ class Solution:
         :type root: TreeNode
         :rtype: int
         """
+        # BFS Solution; Faster because if one branch of tree is very deep, we need not visit there
+        from collections import deque
+        if not root:
+            return 0
+        q = deque()
+        q.append((root,1))
+        while q:
+            node,level = q.popleft()
+            if not any((node.left, node.right)):
+                return level
+            if node.left:
+                q.append((node.left, level+1))
+            if node.right:
+                q.append((node.right, level+1))
+
+        # ========================================
+        # Original simple recursive DFS solution;
+        # ========================================
         if root is None:
             return 0
         elif all((root.left, root.right)):
