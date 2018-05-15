@@ -52,18 +52,34 @@ class Solution:
         q = deque()
         if root:
             q.append((root, 0))
-        table = {}
+        ans = []
         max_level = -1
+        even = True
         while q:
-            node,level = q.popleft()
-            if level not in table:
-                table[level] = []
-            table[level].append((node.val))
-            max_level = max(max_level, level)
+            if even:
+                node,level = q.popleft()
+                children = [node.right, node.left]
+            else:
+                node,level = q.pop()
+                children = [node.left, node.right]
 
-            if node.left:
-                q.append((node.left, level+1))
-            if node.right:
-                q.append((node.right, level+1))
+            if level>max_level:
+                max_level=level
+                ans.append([])
+                ans[level] = []
+                if even:
+                    q.appendleft((node, level))
+                else:
+                    q.append((node,level))
+                even = not even
+                continue
 
-        return [table[level] if level%2==0 else table[level][::-1] for level in range(max_level+1)]
+            ans[level].append((node.val))
+            for child in children:
+                if child:
+                    if even:
+                        q.append((child, level+1))
+                    else:
+                        q.appendleft((child, level+1))
+
+        return ans
