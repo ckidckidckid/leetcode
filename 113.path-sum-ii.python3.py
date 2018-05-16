@@ -52,17 +52,17 @@ class Solution:
         :type sum: int
         :rtype: List[List[int]]
         """
-        def helper(node, path, acc):
+        def inorder_traverse(node, path, acc):
             if node is None:
                 return
             acc += node.val
             path.append(node.val)
             if not node.left and not node.right and acc == sum:
                 ans.append(path[:])
-            helper(node.left, path, acc)
-            helper(node.right, path, acc)
+            inorder_traverse(node.left, path, acc)
+            inorder_traverse(node.right, path, acc)
             path.pop()
 
         ans = []
-        helper(root, [], 0)
+        inorder_traverse(root, [], 0)
         return ans
