@@ -59,13 +59,11 @@ class Solution:
         # ============================
         # Bottom up DP ; explained at
         # https://leetcode.com/problems/triangle/discuss/38730/DP-Solution-for-Triangle
+        # Much faster
         # ============================
 
-        min_path = triangle[-1][:]
         n = len(triangle)
         for level in range(n-2,-1,-1):
             for idx in range(0, level+1):
-                min_path[idx] = triangle[level][idx] + min(
-                    min_path[idx],min_path[idx+1],
-                )
-        return min_path[0]
+                triangle[level][idx] += min(triangle[level+1][idx],triangle[level+1][idx+1])
+        return triangle[0][0]
