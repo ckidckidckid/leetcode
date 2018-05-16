@@ -60,6 +60,7 @@ class Solution:
         # Bottom up DP ; explained at
         # https://leetcode.com/problems/triangle/discuss/38730/DP-Solution-for-Triangle
         # Much faster
+        # Modified it to mutate the input triangle, and allocate no extra space
         # ============================
 
         n = len(triangle)
