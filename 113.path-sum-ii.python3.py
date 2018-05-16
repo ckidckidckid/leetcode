@@ -59,8 +59,9 @@ class Solution:
             path.append(node.val)
             if not node.left and not node.right and acc == sum:
                 ans.append(path[:])
-            helper(node.left, path[:], acc)
-            helper(node.right, path[:], acc)
+            helper(node.left, path, acc)
+            helper(node.right, path, acc)
+            path.pop()
 
         ans = []
         helper(root, [], 0)
