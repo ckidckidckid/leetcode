@@ -67,7 +67,8 @@ class Solution:
     # @param root, a tree link node
     # @return nothing
     def connect(self, root):
-        dummy = tail = TreeLinkNode(0)
+        dummy = TreeLinkNode(0)
+        tail = dummy
         while root:
             tail.next = root.left
             if tail.next:
