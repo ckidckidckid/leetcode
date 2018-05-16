@@ -51,10 +51,10 @@ class Solution:
         :type root: TreeNode
         :rtype: void Do not return anything, modify root in-place instead.
         """
-        dummy = TreeNode(0)
-        dummy.left = root
         stack = []
         stack.append(root)
+        dummy = TreeNode(0)
+        dummy.left = root
         prev = dummy
         while stack:
             n = stack.pop()
