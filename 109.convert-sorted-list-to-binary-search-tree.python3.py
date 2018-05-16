@@ -51,20 +51,21 @@ class Solution:
         :type head: ListNode
         :rtype: TreeNode
         """
+        # Idea from https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/discuss/35525/Share-my-code-with-O(n)-time-and-O(1)-space
         def generate(n):
-            nonlocal head
+            # nonlocal head
             if n==0:
                 return None
             node = TreeNode(0)
             node.left = generate(n//2)
-            node.val = head.val
-            head = head.next
+            node.val = th[0].val
+            th[0] = th[0].next
             node.right = generate(n - n//2 - 1)
             return node
-            
-        th = head
+
+        th = [head]
         size = 0
-        while th:
+        while head:
             size+=1
-            th = th.next
+            head = head.next
         return generate(size)
