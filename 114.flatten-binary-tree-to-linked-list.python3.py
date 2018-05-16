@@ -51,15 +51,14 @@ class Solution:
         :type root: TreeNode
         :rtype: void Do not return anything, modify root in-place instead.
         """
-        if not root:
-            return
+        dummy = TreeNode(0)
+        dummy.left = root
         st = []
         st.append(root)
-        prev = None
+        prev = dummy
         while st:
             n = st.pop()
-            if prev:
-                prev.right = n
+            prev.right = n
             while n:
                 if n.right:
                     st.append(n.right)
