@@ -53,15 +53,15 @@ class Solution:
         """
         dummy = TreeNode(0)
         dummy.left = root
-        st = []
-        st.append(root)
+        stack = []
+        stack.append(root)
         prev = dummy
-        while st:
-            n = st.pop()
+        while stack:
+            n = stack.pop()
             prev.right = n
             while n:
                 if n.right:
-                    st.append(n.right)
+                    stack.append(n.right)
                 n.right = n.left
                 n.left = None
                 prev = n
