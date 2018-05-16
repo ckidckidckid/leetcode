@@ -49,6 +49,23 @@ class Solution:
         :type triangle: List[List[int]]
         :rtype: int
         """
-        self.triangle = triangle
-        self.n = len(triangle)
-        return self.rowmin(0,0)
+        # ============================
+        # Top down DP; original idea + accepted
+        # ============================
+        # self.triangle = triangle
+        # self.n = len(triangle)
+        # return self.rowmin(0,0)
+
+        # ============================
+        # Bottom up DP ; explained at
+        # https://leetcode.com/problems/triangle/discuss/38730/DP-Solution-for-Triangle
+        # ============================
+
+        min_path = triangle[-1][:]
+        n = len(triangle)
+        for level in range(n-2,-1,-1):
+            for idx in range(0, level+1):
+                min_path[idx] = triangle[level][idx] + min(
+                    min_path[idx],min_path[idx+1],
+                )
+        return min_path[0]
