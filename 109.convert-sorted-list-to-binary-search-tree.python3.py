@@ -53,7 +53,6 @@ class Solution:
         """
         # Idea from https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/discuss/35525/Share-my-code-with-O(n)-time-and-O(1)-space
         def generate(n):
-            # nonlocal head
             if n==0:
                 return None
             node = TreeNode(0)
