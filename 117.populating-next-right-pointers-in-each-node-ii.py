@@ -67,6 +67,8 @@ class Solution:
     # @param root, a tree link node
     # @return nothing
     def connect(self, root):
+        # Got the concept clearly after reading explanation at
+        # https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/discuss/37824/AC-Python-O(1)-space-solution-12-lines-and-easy-to-understand
         dummy = TreeLinkNode(0)
         tail = dummy
         while root:
@@ -80,3 +82,6 @@ class Solution:
             if not root:
                 tail = dummy
                 root = tail.next
+
+# Other good solution (similar idea) at
+# https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/discuss/37811/Simple-solution-using-constant-space
