@@ -79,7 +79,5 @@ class Solution:
                     new_node = UndirectedGraphNode(neighbor.label)
                     visited[neighbor] = new_node
                     st.append(neighbor)
-                # visited[neighbor].neighbors.append(visited[n])
-                # if n is not neighbor:
                 visited[n].neighbors.append(visited[neighbor])
         return root
