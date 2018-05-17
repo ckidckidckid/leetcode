@@ -63,7 +63,8 @@ class Solution:
         """
         if root is None:
             return 0
-        elif root.left is None and root.right is None:
-            return acc*10 + root.val
+        acc = acc*10 + root.val
+        if root.left is None and root.right is None:
+            return acc
         else:
-            return self.sumNumbers(root.left, acc*10 + root.val) + self.sumNumbers(root.right, acc*10 + root.val)
+            return self.sumNumbers(root.left, acc) + self.sumNumbers(root.right, acc)
