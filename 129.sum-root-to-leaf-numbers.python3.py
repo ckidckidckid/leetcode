@@ -61,10 +61,29 @@ class Solution:
         :type root: TreeNode
         :rtype: int
         """
-        if root is None:
-            return 0
-        acc = acc*10 + root.val
-        if root.left is None and root.right is None:
-            return acc
-        else:
-            return self.sumNumbers(root.left, acc) + self.sumNumbers(root.right, acc)
+        # Recursive easy solutions; accpeteds
+        # if root is None:
+        #     return 0
+        # acc = acc*10 + root.val
+        # if root.left is None and root.right is None:
+        #     return acc
+        # else:
+        #     return self.sumNumbers(root.left, acc) + self.sumNumbers(root.right, acc)
+
+        # Trying iterative solution
+        dummy = TreeNode(0)
+        dummy.right = root
+        st = [] # stack
+        st.append((dummy,0))
+        ans = 0
+        while st:
+            node, acc = st.pop()
+            acc = acc*10 + node.val
+            if node.right is None and node.left is None:
+                ans += acc
+            else:
+                if node.right:
+                    st.append((node.right, acc))
+                if node.left:
+                    st.append((node.left, acc))
+        return ans
