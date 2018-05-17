@@ -70,7 +70,7 @@ class Solution:
         # else:
         #     return self.sumNumbers(root.left, acc) + self.sumNumbers(root.right, acc)
 
-        # Trying iterative solution # Strangely slower than recursive one 
+        # Trying iterative solution 
         dummy = TreeNode(0)
         dummy.right = root
         st = [] # stack
