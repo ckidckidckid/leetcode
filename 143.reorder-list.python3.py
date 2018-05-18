@@ -49,21 +49,28 @@ class Solution:
             ans = reverse(n1)
             n1.next = node
             return ans
+
         if not head:
             return head
         n = 1
         th = head
+        # Find length of list
         while th:
             n+=1
             th = th.next
         l1 = th = head
 
+        # Find split point
         n = n//2 + int(n%2)
         for i in range(n-1):
             th = th.next
+
+        # Reverse the second part
         l2 = th.next
         th.next = None
         l2 = reverse(l2)
+
+        # Aleternatively join one element from l1 and l2
         ptr = l1
         while l2:
             l1 = l1.next
