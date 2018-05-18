@@ -85,7 +85,7 @@ class Solution:
                     to_process.next = tmp
                     break
                 ptr = ptr.next
-            if ptr.next is None:
+            else:
                 ptr.next = to_process
             to_process = next_to_process
         return dummy.next
