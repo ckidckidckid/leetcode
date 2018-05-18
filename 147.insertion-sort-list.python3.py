@@ -63,12 +63,6 @@ class Solution:
         :type head: ListNode
         :rtype: ListNode
         """
-        def printll(node):
-            while node:
-                print("{}==>".format(node.val), end='')
-                node=node.next
-            print("null")
-
         dummy = ListNode(-float('inf'))
         to_process = head
         while to_process:
@@ -76,8 +70,6 @@ class Solution:
             next_to_process = to_process.next
             to_process.next = None
             ptr = dummy
-            # printll(dummy)
-            # printll(to_process)
             while ptr.next is not None:
                 if v < ptr.next.val:
                     tmp = ptr.next
@@ -85,7 +77,7 @@ class Solution:
                     to_process.next = tmp
                     break
                 ptr = ptr.next
-            else:
+            if ptr.next is None:
                 ptr.next = to_process
             to_process = next_to_process
         return dummy.next
