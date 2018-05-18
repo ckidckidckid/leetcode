@@ -39,11 +39,6 @@ class Solution:
         :type head: ListNode
         :rtype: void Do not return anything, modify head in-place instead.
         """
-        def printll(node):
-            while node:
-                print("{}-->".format(node.val), end='')
-                node=node.next
-            print("null")
         def reverse(node):
             if node is None:
                 return None
@@ -70,8 +65,6 @@ class Solution:
         th.next = None
         l2 = reverse(l2)
         ptr = l1
-        printll(l1)
-        printll(l2)
         while l2:
             l1 = l1.next
             ptr.next = l2
