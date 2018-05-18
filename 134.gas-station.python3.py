@@ -89,9 +89,10 @@ class Solution:
             diff += g-c
         if diff < 0:
             return -1
+
         ans = 0
         acc = gas[0]
-        for i in range(0,n-1):
+        for i in range(n-1):
             if acc < cost[i]:
                 ans = i+1
                 acc = gas[i+1]
