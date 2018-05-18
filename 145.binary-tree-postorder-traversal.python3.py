@@ -46,7 +46,6 @@ class Solution:
         ans = []
         st.append(root)
         while st:
-            print([x.val for x in st])
             n = st.pop()
             if not n.left and not n.right:
                 ans.append(n.val)
