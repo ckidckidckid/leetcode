@@ -44,18 +44,17 @@ class Solution:
             return []
         st = []
         ans = []
+        visited = set()
         st.append(root)
         while st:
             n = st.pop()
-            if not n.left and not n.right:
+            if n in visited:
                 ans.append(n.val)
             else:
-                r = n.right
-                l = n.left
-                n.right = n.left = None
+                visited.add(n)
                 st.append(n)
-                if r:
-                    st.append(r)
-                if l:
-                    st.append(l)
+                if n.right:
+                    st.append(n.right)
+                if n.left:
+                    st.append(n.left)
         return ans
