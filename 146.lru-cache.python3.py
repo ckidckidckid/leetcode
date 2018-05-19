@@ -50,20 +50,6 @@ class Node:
 
 class LRUCache:
 
-    def print_fwd(self):
-        n = self.head
-        while n:
-            print(n.val, '==>', end='')
-            n = n.next
-        print('None')
-
-    def print_bkd(self):
-        n = self.tail
-        while n:
-            print(n.val, '==>', end='')
-            n = n.prev
-        print('None')
-
     def __init__(self, capacity):
         """
         :type capacity: int
@@ -81,7 +67,6 @@ class LRUCache:
         :type key: int
         :rtype: int
         """
-        # print("get", key, '~~>', end='')
         if key not in self.table:
             return -1
         node = self.table[key]
@@ -96,7 +81,6 @@ class LRUCache:
         oh.prev = node
         self.head.next = node
 
-        # print(node.val)
         return node.val
 
     def put(self, key, value):
@@ -105,18 +89,13 @@ class LRUCache:
         :type value: int
         :rtype: void
         """
-        # print("put", key, value)
-        # self.print_bkd()
-        # self.print_fwd()
         node = Node(key, value)
         if key in self.table:
             e_node = self.table[key]
-            # print("override ", e_node.val)
             t_prev = e_node.prev
             t_next = e_node.next
             t_prev.next = e_node.next
             t_next.prev = e_node.prev
-            # e_node.next.prev, e_node.prev.next = e_node.prev, e_node.next
             self.size -= 1
         self.table[key] = node
 
@@ -129,12 +108,10 @@ class LRUCache:
         self.size += 1
         if self.size > self.capacity:
             to_del_node = self.tail.prev
-            # print("eviction ", to_del_node.val, to_del_node.next.val, to_del_node.prev.val)
             t_prev = to_del_node.prev
             t_next = to_del_node.next
             t_prev.next = to_del_node.next
             t_next.prev = to_del_node.prev
-            # print("--", self.tail.prev.val)
             del self.table[to_del_node.key]
             self.size-=1
 
