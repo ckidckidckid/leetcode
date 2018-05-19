@@ -53,8 +53,7 @@ class LRUCache:
         """
         :type capacity: int
         """
-        self.capacity = capacity+2
-        self.size = 2
+        self.capacity = capacity
         self.table = {}
         self.head = Node(None, None)
         self.tail = Node(None, None)
@@ -84,18 +83,15 @@ class LRUCache:
         if key in self.table:
             e_node = self.table[key]
             e_node.next.prev, e_node.prev.next = e_node.prev, e_node.next
-            self.size -= 1
 
         self.table[key] = node
         node.prev, node.next = self.head, self.head.next
         self.head.next = node.next.prev = node
-        self.size += 1
 
-        if self.size > self.capacity:
+        if len(self.table) > self.capacity:
             e_node = self.tail.prev
             e_node.next.prev, e_node.prev.next = e_node.prev, e_node.next
             del self.table[e_node.key]
-            self.size -= 1
 
 
 
