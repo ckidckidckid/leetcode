@@ -38,9 +38,8 @@
 # cache.get(1);       // returns -1 (not found)
 # cache.get(3);       // returns 3
 # cache.get(4);       // returns 4
-#
-#
-#
+
+
 class Node:
     def __init__(self, key, val, next=None, prev=None):
         self.key = key
@@ -70,17 +69,9 @@ class LRUCache:
         if key not in self.table:
             return -1
         node = self.table[key]
-        t_prev = node.prev
-        t_next = node.next
-        t_prev.next = node.next
-        t_next.prev = node.prev
-
-        oh = self.head.next
-        node.prev = self.head
-        node.next = oh
-        oh.prev = node
-        self.head.next = node
-
+        node.next.prev, node.prev.next = node.prev, node.next
+        node.prev, node.next = self.head, self.head.next
+        self.head.next = node.next.prev = node
         return node.val
 
     def put(self, key, value):
@@ -94,25 +85,17 @@ class LRUCache:
             e_node = self.table[key]
             e_node.next.prev, e_node.prev.next = e_node.prev, e_node.next
             self.size -= 1
+
         self.table[key] = node
-
-        # node.prev, node.next = self.head, self.head.next
-        # self.head.next , self.head.next.prev = node, node
-        oh = self.head.next
-        node.prev = self.head
-        node.next = oh
-        self.head.next = node
-        oh.prev = node
-
+        node.prev, node.next = self.head, self.head.next
+        self.head.next = node.next.prev = node
         self.size += 1
+
         if self.size > self.capacity:
-            to_del_node = self.tail.prev
-            t_prev = to_del_node.prev
-            t_next = to_del_node.next
-            t_prev.next = to_del_node.next
-            t_next.prev = to_del_node.prev
-            del self.table[to_del_node.key]
-            self.size-=1
+            e_node = self.tail.prev
+            e_node.next.prev, e_node.prev.next = e_node.prev, e_node.next
+            del self.table[e_node.key]
+            self.size -= 1
 
 
 
