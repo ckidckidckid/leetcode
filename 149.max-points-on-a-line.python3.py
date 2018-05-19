@@ -56,6 +56,9 @@ class Solution:
         :type points: List[Point]
         :rtype: int
         """
+        # O(n^2) solution ; explained at
+        # https://leetcode.com/problems/max-points-on-a-line/discuss/47124/16ms28ms-C++-Solutions-with-Explanations
+
         def gcd(x,y):
             if y==0:
                 return x
