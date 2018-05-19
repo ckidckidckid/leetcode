@@ -93,13 +93,11 @@ class LRUCache:
         if key in self.table:
             e_node = self.table[key]
             e_node.next.prev, e_node.prev.next = e_node.prev, e_node.next
-            # t_prev = e_node.prev
-            # t_next = e_node.next
-            # t_prev.next = e_node.next
-            # t_next.prev = e_node.prev
             self.size -= 1
         self.table[key] = node
 
+        # node.prev, node.next = self.head, self.head.next
+        # self.head.next , self.head.next.prev = node, node
         oh = self.head.next
         node.prev = self.head
         node.next = oh
