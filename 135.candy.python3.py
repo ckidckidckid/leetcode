@@ -49,8 +49,18 @@ class Solution:
         :type ratings: List[int]
         :rtype: int
         """
+        # ============================================================
+        # Even better  O(n) time, O(1) space, one pass solution
+        # https://leetcode.com/problems/candy/discuss/42795/Two-C++-solutions-given-with-explanation-(both-with-O(N)-time-one-with-O(1)-space-the-other-with-O(N)-space)
+        # https://leetcode.com/problems/candy/discuss/42770/One-pass-constant-space-Java-solution
+        # ============================================================
+
+
+        # ============================================================
         # O(n) time , O(n) space solution;
         # idea from https://leetcode.com/problems/candy/discuss/42794/Simple-O(n)-Java-solution-with-comments
+        # ============================================================
+
         n = len(ratings)
         table = [1]*n
         for i in range(1,n):
@@ -64,6 +74,7 @@ class Solution:
         # ============================================================
         # O(nlog(n)) solution; Accepted; but not very fast; beats 19%
         # ============================================================
+
         # inp = [(r,i) for i,r in enumerate(ratings)]
         # inp.sort()
         # n = len(ratings)
