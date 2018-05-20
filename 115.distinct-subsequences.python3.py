@@ -61,7 +61,7 @@
 class Solution:
 
     # =====================================================
-    # Iterative DP (bottom up) solution
+    # Iterative DP (bottom up) solution; Accepted; beats 81% :)
     # =====================================================
     def numDistinct(self, s, t):
         """
@@ -71,8 +71,8 @@ class Solution:
         """
         m = len(s)
         n = len(t)
-        table = [[0 for _ in range(m+1)] for _ in range(n)]
-        table.append([1 for _ in range(m+1)])
+        table = [[0]*(m+1) for _ in range(n)]
+        table.append([1]*(m+1))
         for i in range(n-1,-1,-1):
             for j in range(m-1,-1,-1):
                 table[i][j] = table[i][j+1]
@@ -82,7 +82,7 @@ class Solution:
 
 
     # =====================================================
-    # Recursive solution with memoization. times out :(
+    # Recursive solution (top down) with memoization. times out :(
     # =====================================================
     # def numDistinct(self, s, t, table = {}):
     #     """
