@@ -49,13 +49,28 @@ class Solution:
         :type ratings: List[int]
         :rtype: int
         """
-        inp = [(r,i) for i,r in enumerate(ratings)]
-        inp.sort()
+        # O(n) time , O(n) space solution;
+        # idea from https://leetcode.com/problems/candy/discuss/42794/Simple-O(n)-Java-solution-with-comments
         n = len(ratings)
         table = [1]*n
-        for (r,i) in inp:
-            if i>0 and r > ratings[i-1]:
+        for i in range(1,n):
+            if ratings[i] > ratings[i-1]:
                 table[i] = max(table[i], table[i-1]+1)
-            if i<n-1 and r > ratings[i+1]:
+        for i in range(n-2,-1,-1):
+            if ratings[i] > ratings[i+1]:
                 table[i] = max(table[i], table[i+1]+1)
         return sum(table)
+
+        # ============================================================
+        # O(nlog(n)) solution; Accepted; but not very fast; beats 19%
+        # ============================================================
+        # inp = [(r,i) for i,r in enumerate(ratings)]
+        # inp.sort()
+        # n = len(ratings)
+        # table = [1]*n
+        # for (r,i) in inp:
+        #     if i>0 and r > ratings[i-1]:
+        #         table[i] = max(table[i], table[i-1]+1)
+        #     if i<n-1 and r > ratings[i+1]:
+        #         table[i] = max(table[i], table[i+1]+1)
+        # return sum(table)
