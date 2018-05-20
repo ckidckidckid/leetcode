@@ -62,18 +62,17 @@ class Solution:
         def helper(node):
             if node in table:
                 return table[node]
-            if not node.left and not node.right:
+            if not node:
+                return (MIN, MIN)
+            elif not node.left and not node.right:
                 ans = (node.val, MIN)
             else:
-                lsub_r, lsub_ur = helper(node.left) if node.left else (MIN,MIN)
-                rsub_r, rsub_ur = helper(node.right) if node.right else (MIN,MIN)
+                lsub_r, lsub_ur = helper(node.left)
+                rsub_r, rsub_ur = helper(node.right)
                 best_r = max(node.val, node.val+lsub_r, node.val+rsub_r)
                 best_ur = max(lsub_r, lsub_ur, rsub_r, rsub_ur, lsub_r + rsub_r + node.val)
                 ans = (best_r, best_ur)
             table[node] = ans
             return ans
-
-        if not root:
-            return 0
         table = {}
         return max(helper(root))
