@@ -56,11 +56,12 @@ class Solution:
         :type root: TreeNode
         :rtype: int
         """
+        # Recursive solution with Memoization
+        # each node returns 2 values via helper ==> (best_path_with_root_begin, best_path_without_root_begin)
         MIN = -float('inf')
         def helper(node):
             if node in table:
                 return table[node]
-            inc_root = False
             if not node.left and not node.right:
                 ans = (node.val, MIN)
             else:
@@ -70,7 +71,6 @@ class Solution:
                 best_ur = max(lsub_r, lsub_ur, rsub_r, rsub_ur, lsub_r + rsub_r + node.val)
                 ans = (best_r, best_ur)
             table[node] = ans
-            # print(node.val, '==>', ans)
             return ans
 
         if not root:
