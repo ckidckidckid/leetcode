@@ -62,6 +62,7 @@ class Solution:
 
     # =====================================================
     # Iterative DP (bottom up) solution; Accepted; beats 81% :)
+    # Memoization table at https://imgur.com/gallery/c8UEMne
     # =====================================================
     def numDistinct(self, s, t):
         """
