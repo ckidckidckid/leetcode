@@ -31,7 +31,7 @@ class Solution:
         :rtype: int
         """
         # ===================================================================
-        # More elegant O(n) solution ; by Stefan Pochmann;
+        # More elegant O(n) solution ; by Stefan Pochmann; beats 92%
         # ===================================================================
         nums = set(nums)
         ans = 0
