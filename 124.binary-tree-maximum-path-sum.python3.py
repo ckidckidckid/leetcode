@@ -76,5 +76,4 @@ class Solution:
         if not root:
             return 0
         table = {}
-        ans = max(helper(root))
-        return ans
+        return max(helper(root))
