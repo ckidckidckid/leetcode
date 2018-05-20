@@ -30,33 +30,49 @@ class Solution:
         :type nums: List[int]
         :rtype: int
         """
-        table = {}
+        # ===================================================================
+        # More elegant O(n) solution ; by Stefan Pochmann;
+        # ===================================================================
+        nums = set(nums)
         ans = 0
-        for num in nums:
-            if num in table:
-                continue
-            elif num+1 not in table and num-1 not in table:
-                table[num] = (num, 1)
-            else:
-                to_add = 0
-                t=num+1
-                while t in table:
-                    val,count = table[t]
-                    to_add += count
-                    table[t] = (num, 0)
-                    if val == t:
-                        break
-                    else:
-                        t = val
-                t=num-1
-                while t in table:
-                    val,count = table[t]
-                    to_add += count
-                    table[t] = (num, 0)
-                    if val == t:
-                        break
-                    else:
-                        t = val
-                table[num] = (num, 1 + to_add)
-            ans = max(ans, table[num][1])
+        for lo in nums:
+            if lo-1 not in nums:
+                hi=lo+1
+                while hi in nums:
+                    hi+=1
+                ans = max(ans, hi-lo)
         return ans
+
+        # ===================================================================
+        # Original solution; union find ; O(n); accepted beats 49%
+        # ===================================================================
+        # table = {}
+        # ans = 0
+        # for num in nums:
+        #     if num in table:
+        #         continue
+        #     elif num+1 not in table and num-1 not in table:
+        #         table[num] = (num, 1)
+        #     else:
+        #         to_add = 0
+        #         t=num+1
+        #         while t in table:
+        #             val,count = table[t]
+        #             to_add += count
+        #             table[t] = (num, 0)
+        #             if val == t:
+        #                 break
+        #             else:
+        #                 t = val
+        #         t=num-1
+        #         while t in table:
+        #             val,count = table[t]
+        #             to_add += count
+        #             table[t] = (num, 0)
+        #             if val == t:
+        #                 break
+        #             else:
+        #                 t = val
+        #         table[num] = (num, 1 + to_add)
+        #     ans = max(ans, table[num][1])
+        # return ans
