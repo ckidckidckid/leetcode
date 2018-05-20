@@ -31,7 +31,7 @@ class Solution:
         :rtype: int
         """
         # =====================================================================
-        # Trying iterative version
+        # Trying iterative version; beats 74%
         # https://leetcode.com/problems/palindrome-partitioning-ii/discuss/42198/My-solution-does-not-need-a-table-for-palindrome-is-it-right-It-uses-only-O(n)-space./112629
         # =====================================================================
         n = len(s)
