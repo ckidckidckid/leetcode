@@ -31,26 +31,23 @@ class Solution:
         :type s: str
         :rtype: List[str]
         """
-        if len(s) <= 10:
-            return []
+        # =====================================================================
+        # Idea based on concept of rolling hash @
+        # https://leetcode.com/problems/repeated-dna-sequences/discuss/53902/Short-Java-%22rolling-hash%22-solution
+        # =====================================================================
+
         table = {'A':1, 'C':2, 'G':3, 'T':4}
         hashes = set()
         rhash = 0
         ans = set()
-        for i in range(10):
+        for i in range(min(10, len(s))):
             rhash = rhash*10 + table[s[i]]
         hashes.add(rhash)
-        # print(s[:10], '-->', rhash)
         for i in range(10, len(s)):
             rhash -= (10**9)*table[s[i-10]]
             rhash = rhash*10 + table[s[i]]
-            # print(s[i-9:i+1], '-->', rhash)
             if rhash in hashes:
                 ans.add(s[i-9:i+1])
             else:
                 hashes.add(rhash)
         return list(ans)
-
-# st = "CGACGCAATTTAGAACGGGCCGCACTGCAACCATTGCTCAGACAACGCATGAGTTAAATTTCACAAGTGATAGTGGCTTGCGAGACGTGGGTTGGTGGTAGCGTACGCCCGCTATTCGCCCCTAACGTGACGGGATTATAAGGTCGCTTCCCGGAATGCGCAGACGAGTCTCCGGTTTAGCCTAGACGTCTCACGCGCGCAAGGCGTCAGTTCTCACTATCTCGCACAGGTGTATTCTATTAGTTATGGGTTCTCACTACAGTCGGTTACTTCCTCATCCATTTCTGCATACGGGTCAACTAACAGTGTCATGGGGTATTGGGAAGGATGCGTTTTTAAACCCTCTCAGTAGCGCGAGGATGCCCACAAATACGACGGCGGCCACGGATCTAATGCGAAGCTAGCGACGCTTTCCAGCAACGAGCGCCCCACTTATGACTGCGTGGGGCGCTCCGCTTTCCTAGAGAACATAGATGGTGTTTTCGAATCGTAACCACTTA"
-# s = Solution()
-# s.findRepeatedDnaSequences(st)
