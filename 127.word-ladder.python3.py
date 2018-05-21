@@ -106,8 +106,6 @@ class Solution:
 
         wordList = set(wordList)
         graph = create_graph(wordList | {beginWord, endWord})
-        # print(graph)
-        # return 0
         return bfs(graph, beginWord, endWord)
 
         # =====================================================================================
