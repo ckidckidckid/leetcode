@@ -35,20 +35,12 @@ class Solution:
         :type nums: List[int]
         :rtype: str
         """
-        if not any(nums):
-            return '0'
-        transformed = []
-        len_table = {}
+        if not any(nums): return '0'
+        transformed, len_table = [], {}
         for i,num in enumerate(nums):
             s = str(num)
-            l = len(s)
-            len_table[i] = l
-            s += s[0]*5 + s[::-1]
+            len_table[i] = len(s)
+            s =  s + s[0]*3 + s[::-1]
             transformed.append((s, i))
-        # print(transformed)
-        # transformed.sort(key = lambda args : len_table[args[1]])
-        # print(transformed)
         transformed.sort(reverse=True)
-        # print(transformed)
-        ans_list = [s[:len_table[idx]] for (s,idx) in transformed]
-        return ''.join(ans_list)
+        return ''.join([s[:len_table[idx]] for (s,idx) in transformed])
