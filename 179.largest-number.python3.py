@@ -36,11 +36,10 @@ class Solution:
         :rtype: str
         """
         if not any(nums): return '0'
-        transformed, len_table = [], {}
+        transformed, orig_table = [], {}
         for i,num in enumerate(nums):
-            s = str(num)
-            len_table[i] = len(s)
+            orig_table[i] = s = str(num)
             s =  s + s[0] + s[::-1]
             transformed.append((s, i))
         transformed.sort(reverse=True)
-        return ''.join([s[:len_table[idx]] for (s,idx) in transformed])
+        return ''.join([orig_table[idx] for (_,idx) in transformed])
