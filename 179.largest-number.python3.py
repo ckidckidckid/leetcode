@@ -48,7 +48,7 @@ class Solution:
         # print(transformed)
         # transformed.sort(key = lambda args : len_table[args[1]])
         # print(transformed)
-        transformed.sort(reverse=True, key = lambda args: args[0])
+        transformed.sort(reverse=True)
         # print(transformed)
         ans_list = [s[:len_table[idx]] for (s,idx) in transformed]
         return ''.join(ans_list)
