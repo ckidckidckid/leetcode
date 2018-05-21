@@ -40,7 +40,7 @@ class Solution:
         for i,num in enumerate(nums):
             s = str(num)
             len_table[i] = len(s)
-            s =  s + s[0]*3 + s[::-1]
+            s =  s + s[0]*2 + s[::-1]
             transformed.append((s, i))
         transformed.sort(reverse=True)
         return ''.join([s[:len_table[idx]] for (s,idx) in transformed])
