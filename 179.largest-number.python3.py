@@ -43,7 +43,7 @@ class Solution:
             s = str(num)
             l = len(s)
             len_table[i] = l
-            s += s[0]*10 + s[::-1]
+            s += s[0]*5 + s[::-1]
             transformed.append((s, i))
         # print(transformed)
         # transformed.sort(key = lambda args : len_table[args[1]])
