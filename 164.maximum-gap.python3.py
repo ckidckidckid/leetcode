@@ -51,8 +51,6 @@ class Solution:
         if n<2:
             return 0
         biggest = max(nums)
-
-        temp = [0]*n
         pow = 1
         while pow <= biggest:
             bucket = [0]*10
@@ -60,13 +58,12 @@ class Solution:
                 bucket[(num//pow)%10] += 1
             for i in range(1,10):
                 bucket[i]+= bucket[i-1]
-            # print(nums, bucket)
-            for num in nums[::-1]:
+            rev = nums[::-1]
+            for num in rev:
                 digit = (num//pow)%10
                 bucket[digit]-=1
                 idx = bucket[digit]
-                temp[idx] = num
-            nums = temp
+                nums[idx] = num
             pow *= 10
 
         ans = 0
