@@ -45,7 +45,7 @@ class Solution:
         :rtype: int
         """
         # ======================================================================
-        # Trying radix sort
+        # Trying radix sort; Accepted, but not super fast
         # ======================================================================
         n = len(nums)
         if n<2:
@@ -70,6 +70,7 @@ class Solution:
         for i in range(1,n):
             ans = max(ans, nums[i]-nums[i-1])
         return ans
+
         # ======================================================================
         # Count sort; times out
         # ======================================================================
