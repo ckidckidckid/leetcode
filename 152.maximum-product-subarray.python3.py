@@ -35,25 +35,39 @@ class Solution:
         :rtype: int
         """
         # ======================================================================
-        # Trying O(n) solution;
+        # Trying improved O(n) solution|O(1) space;
         # ======================================================================
-        n = len(nums)
-        if n < 1:
-            return 0
-        pos = [0]*n
-        neg = [0]*n
-        ans = nums[0]
-        pos[0] = nums[0] if nums[0] >= 0 else 1
-        neg[0] = nums[0] if nums[0] < 0 else 1
-        for i in range(1,n):
-            if nums[i] >= 0:
-                pos[i] = max(pos[i-1]*nums[i], nums[i])
-                neg[i] = min(neg[i-1]*nums[i], nums[i])
-            else:
-                pos[i] = max(neg[i-1]*nums[i], nums[i])
-                neg[i] = min(pos[i-1]*nums[i], nums[i])
-            ans = max(ans, pos[i])
+
+        pos = neg = 1
+        ans = -float('inf')
+        for i,n in enumerate(nums):
+            if n<0:
+                pos,neg=neg,pos
+            pos = max(pos*n, n)
+            neg = min(neg*n, n)
+            ans = max(ans, pos)
         return ans
+
+        # ======================================================================
+        # Trying O(n) solution|O(n) space; Accepted, but beats only 11%
+        # ======================================================================
+        # n = len(nums)
+        # if n < 1:
+        #     return 0
+        # pos = [0]*n
+        # neg = [0]*n
+        # ans = nums[0]
+        # pos[0] = nums[0] if nums[0] >= 0 else 1
+        # neg[0] = nums[0] if nums[0] < 0 else 1
+        # for i in range(1,n):
+        #     if nums[i] >= 0:
+        #         pos[i] = max(pos[i-1]*nums[i], nums[i])
+        #         neg[i] = min(neg[i-1]*nums[i], nums[i])
+        #     else:
+        #         pos[i] = max(neg[i-1]*nums[i], nums[i])
+        #         neg[i] = min(pos[i-1]*nums[i], nums[i])
+        #     ans = max(ans, pos[i])
+        # return ans
 
         # ======================================================================
         # Trying O(n^2) solution; still times out
