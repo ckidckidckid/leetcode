@@ -50,7 +50,7 @@ class Solution:
             m = s + (e-s)//2
             if (m==0 or nums[m-1] > nums[m]) and (m == n-1 or nums[m] < nums[m+1]):
                 return nums[m]
-            elif nums[m] <= nums[e]:
+            elif nums[m] < nums[e]:
                 e=m-1
             else:
                 s=m+1
