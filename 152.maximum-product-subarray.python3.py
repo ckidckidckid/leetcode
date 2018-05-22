@@ -35,12 +35,12 @@ class Solution:
         :rtype: int
         """
         # ======================================================================
-        # Trying improved O(n) solution|O(1) space; beats 63%
+        # Trying improved O(n) solution|O(1) space; beats 88%
         # ======================================================================
 
         pos = neg = 1
         ans = -float('inf')
-        for i,n in enumerate(nums):
+        for n in nums:
             if n<0:
                 pos,neg=neg,pos
             pos = max(pos*n, n)
