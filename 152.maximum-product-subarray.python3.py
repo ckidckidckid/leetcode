@@ -35,7 +35,7 @@ class Solution:
         :rtype: int
         """
         # ======================================================================
-        # Trying improved O(n) solution|O(1) space;
+        # Trying improved O(n) solution|O(1) space; beats 63%
         # ======================================================================
 
         pos = neg = 1
