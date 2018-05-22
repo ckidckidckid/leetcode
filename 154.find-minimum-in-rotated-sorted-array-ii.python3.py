@@ -44,16 +44,12 @@ class Solution:
         :type nums: List[int]
         :rtype: int
         """
-        return min(nums)
-        # if nums[0] <= nums[-1]:
-        #     return nums[0]
-        # n = len(nums)
-        # s,e=0,n-1
-        # while s < e:
-        #     m = s + (e-s)//2
-        #     if (m==0 or nums[m-1] > nums[m]) and (m == n-1 or nums[m] < nums[m+1]):
-        #         return nums[m]
-        #     elif nums[m] < nums[e]:
-        #         e=m
-        #     else:
-        #         s=m
+        # =======================================================
+        # Apparently O(log(n)) is impossible for repeated elements
+        # https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/discuss/48849/Stop-wasting-your-time.-It-most-likely-has-to-be-O(n).
+        # =======================================================
+        n = len(nums)
+        for i in range(n-1):
+            if nums[i] > nums[i+1]:
+                return nums[i+1]
+        return nums[0]
