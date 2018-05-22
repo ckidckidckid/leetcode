@@ -39,4 +39,22 @@ class Solution:
         :type nums: List[int]
         :rtype: int
         """
-        return min(nums)
+        # ======================================================================
+        # Trying O(log(n))
+        # ======================================================================
+        if nums[0] < nums[-1]:
+            return nums[0]
+        n = len(nums)
+        s,e=0,n-1
+        while s <= e:
+            m = s + (e-s)//2
+            if (m==0 or nums[m-1] > nums[m]) and (m == n-1 or nums[m] < nums[m+1]):
+                return nums[m]
+            elif nums[m] <= nums[e]:
+                e=m-1
+            else:
+                s=m+1
+        # ======================================================================
+        # O(n) gets accepted(cheeating); beats 10%
+        # ======================================================================
+        # return min(nums)
