@@ -83,19 +83,16 @@ class Solution:
         """
         m = len(dungeon)
         n = len(dungeon[0])
+
         balance = [[0 for _ in range(n)] for _ in range(m)]
         balance[m-1][n-1] = 1
-        for j in range(n-2, -1, -1):
-            balance[m-1][j] = max(balance[m-1][j+1] - dungeon[m-1][j+1], 1)
-        for i in range(m-2, -1, -1):
-            balance[i][n-1] = max(balance[i+1][n-1] - dungeon[i+1][n-1], 1)
-
-        for i in range(m-2, -1, -1):
-            for j in range(n-2, -1, -1):
-                right = balance[i][j+1] - dungeon[i][j+1]
-                down  = balance[i+1][j] - dungeon[i+1][j]
+        for i in range(m-1, -1, -1):
+            for j in range(n-1, -1, -1):
+                if i==m-1 and j==n-1:
+                    continue
+                right = balance[i][j+1] - dungeon[i][j+1] if j<n-1 else float('inf')
+                down  = balance[i+1][j] - dungeon[i+1][j] if i<m-1 else float('inf')
                 best_bal = min(right, down)
                 balance[i][j] = max(best_bal, 1)
 
-        ans = max(balance[0][0] - dungeon[0][0], 1)
-        return ans
+        return max(balance[0][0] - dungeon[0][0], 1)
