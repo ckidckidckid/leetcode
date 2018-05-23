@@ -84,7 +84,7 @@ class Solution:
     # =========================================================================
     # Trying O(sp) solution
     # Based on https://leetcode.com/problems/wildcard-matching/discuss/17810/Linear-runtime-and-constant-space-solution
-    #  Not sure of complexity
+    # Not sure of complexity
     # =========================================================================
     def isMatch(self, s, p):
         """
