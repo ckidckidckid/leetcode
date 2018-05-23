@@ -29,22 +29,18 @@
 #
 # You can assume that you can always reach the last index.
 #
-from collections import deque
-
 class Solution:
     def jump(self, nums):
         """
         :type nums: List[int]
         :rtype: int
         """
-        n = len(nums)
         steps = 0
-        q = deque()
-        q.append((0,0))
-        for i in range(n):
-            reach,steps = q[0]
-            if i+nums[i] > q[-1][0]:
-                q.append((i+nums[i], steps+1))
+        front = back = (0,0)
+        for i in range(len(nums)):
+            reach,steps = front
+            if i+nums[i] > back[0]:
+                back = (i+nums[i], steps+1)
             if reach == i:
-                q.popleft()
+                front = back
         return steps
