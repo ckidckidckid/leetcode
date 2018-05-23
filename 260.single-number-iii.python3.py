@@ -35,14 +35,17 @@ class Solution:
         :type nums: List[int]
         :rtype: List[int]
         """
+        # ======================================================================
+        # O(n) time, O(1) space; Got the idea from discussions
+        # ======================================================================
         x = 0
         for num in nums:
-            x^=num
-        idx=0
+            x ^= num
+        bit_set = 0
         ans = [0,0]
-        while x%2==0:
-            x>>=1
-            idx+=1
+        while x%2 == 0:
+            x >>= 1
+            bit_set += 1
         for num in nums:
-            ans[(num>>idx)%2] ^= num
+            ans[(num >> bit_set) % 2] ^= num
         return ans
