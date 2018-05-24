@@ -38,21 +38,37 @@ class Solution:
         :rtype: int
         """
         # ======================================================================
-        # Trying faster solution; O(nlog(n)) solution
+        # Trying O(n) solution; Idea by
+        # https://stackoverflow.com/questions/4600048/nth-ugly-number
         # ======================================================================
+        ugly = [1]*n
+        p2 = p3 = p5 = 0
+        for i in range(1,n):
+            ugly[i] = min(ugly[p2]*2, ugly[p3]*3, ugly[p5]*5)
+            if ugly[i] % 2 == 0:
+                p2 += 1
+            if ugly[i] % 3 == 0:
+                p3 += 1
+            if ugly[i] % 5 == 0:
+                p5 += 1
+        return ugly[-1]
 
-        seen = {1}
-        ugly = deque([1])
-        count = 0
-        while True:
-            num = ugly.popleft()
-            count += 1
-            if count == n:
-                return num
-            for val in (num*2, num*3, num*5):
-                if val not in seen:
-                    seen.add(val)
-                    insort(ugly, val)
+        # ======================================================================
+        # Trying faster solution; O(nlog(n)) solution;
+        # Accepted but beats only 3.5% of the solutions
+        # ======================================================================
+        # seen = {1}
+        # ugly = deque([1])
+        # count = 0
+        # while True:
+        #     num = ugly.popleft()
+        #     count += 1
+        #     if count == n:
+        #         return num
+        #     for val in (num*2, num*3, num*5):
+        #         if val not in seen:
+        #             seen.add(val)
+        #             insort(ugly, val)
 
         # ======================================================================
         # O(n^2) solution; Times out
