@@ -48,6 +48,7 @@
 #         self.left = None
 #         self.right = None
 
+from collections import deque
 class Codec:
 
     def serialize(self, root):
@@ -58,15 +59,17 @@ class Codec:
         """
         def preorder(node):
             if node is None:
-                ans[0] += ',$'
+                arr.append(None)
             else:
-                ans[0] += ','+str(node.val)
+                arr.append(node.val)
                 preorder(node.left)
                 preorder(node.right)
 
-        ans = ['']
+        arr = []
         preorder(root)
-        return ans[0][1:]
+        str_arr = [str(x) if x is not None else '$' for x in arr]
+        serial = ','.join(str_arr)
+        return serial
 
     def deserialize(self, data):
         """Decodes your encoded data to tree.
@@ -77,7 +80,7 @@ class Codec:
         str_arr = data.split(',')
         arr = [int(x) if x != '$' else None for x in str_arr]
         dummy = TreeNode(-1)
-        st = [dummy]
+        st = deque([dummy])
         prev_None = True
         for val in arr:
             node = TreeNode(val)
