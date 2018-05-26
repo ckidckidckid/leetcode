@@ -43,23 +43,43 @@ class Solution:
         :type nums: List[int]
         :rtype: int
         """
-        s,e=1,len(nums)-1
-        while s<=e:
-            m = s + (e-s)//2
-            sm=eq=lg=0
+        # ======================================================================
+        # Still O(nlog(n)) But trying a simplified approach
+        # https://leetcode.com/problems/find-the-duplicate-number/discuss/72844/Two-Solutions-(with-explanation):-O(nlog(n))-and-O(n)-time-O(1)-space-without-changing-the-input-array
+        # ======================================================================
+        s,e = 1,len(nums)-1
+        while s<e:
+            m = s+(e-s)//2
+            cnt=0
             for num in nums:
-                if not s<=num<=e:
-                    continue
-                if num==m:
-                    eq+=1
-                elif num<m:
-                    sm+=1
-                else:
-                    lg+=1
-                if eq>1:
-                    return m
-            if sm<lg:
-                s=m+1
+                if num<=m:
+                    cnt+=1
+            if cnt>m:
+                e=m
             else:
-                e=m-1
-        return -1
+                s=m+1
+        return s
+
+        # ======================================================================
+        # O(nlog(n)) Solution; Accepted, but there exists a faster O(n) algorithm
+        # ======================================================================
+        # s,e=1,len(nums)-1
+        # while s<=e:
+        #     m = s + (e-s)//2
+        #     sm=eq=lg=0
+        #     for num in nums:
+        #         if not s<=num<=e:
+        #             continue
+        #         if num==m:
+        #             eq+=1
+        #         elif num<m:
+        #             sm+=1
+        #         else:
+        #             lg+=1
+        #         if eq>1:
+        #             return m
+        #     if sm<lg:
+        #         s=m+1
+        #     else:
+        #         e=m-1
+        # return -1
