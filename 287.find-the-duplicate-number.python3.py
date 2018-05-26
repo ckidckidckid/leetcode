@@ -44,21 +44,35 @@ class Solution:
         :rtype: int
         """
         # ======================================================================
+        # Trying an O(n) algorithm; Turns out it is the same as Linked List Cycle detection problem
+        # ======================================================================
+        slow = nums[0]
+        fast = nums[nums[0]]
+        while slow != fast:
+            slow = nums[slow]
+            fast = nums[nums[fast]]
+        fast = 0
+        while slow != fast:
+            slow = nums[slow]
+            fast = nums[fast]
+        return slow
+
+        # ======================================================================
         # Still O(nlog(n)) But trying a simplified approach
         # https://leetcode.com/problems/find-the-duplicate-number/discuss/72844/Two-Solutions-(with-explanation):-O(nlog(n))-and-O(n)-time-O(1)-space-without-changing-the-input-array
         # ======================================================================
-        s,e = 1,len(nums)-1
-        while s<e:
-            m = s+(e-s)//2
-            cnt=0
-            for num in nums:
-                if num<=m:
-                    cnt+=1
-            if cnt>m:
-                e=m
-            else:
-                s=m+1
-        return s
+        # s,e = 1,len(nums)-1
+        # while s<e:
+        #     m = s+(e-s)//2
+        #     cnt=0
+        #     for num in nums:
+        #         if num<=m:
+        #             cnt+=1
+        #     if cnt>m:
+        #         e=m
+        #     else:
+        #         s=m+1
+        # return s
 
         # ======================================================================
         # O(nlog(n)) Solution; Accepted, but there exists a faster O(n) algorithm
