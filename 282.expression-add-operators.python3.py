@@ -60,7 +60,7 @@ class Solution:
                 if multi is not None:
                     bal -= multi
                 if bal == 0:
-                    ans.add(acc_str[1:])
+                    ans.append(acc_str[1:])
             else:
                 for i in range(len(s)-1, -1, -1):
                     head = s[:i]
@@ -80,6 +80,6 @@ class Solution:
 
             pass
 
-        ans = set()
+        ans = []
         helper(num, '', target, None)
         return list(ans)
