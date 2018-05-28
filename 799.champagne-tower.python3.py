@@ -71,16 +71,20 @@ class Solution:
         :type query_glass: int
         :rtype: float
         """
+        # =====================================================================
+        # O(mn) space and time; Accpeted because it is iterative
+        # =====================================================================
+
         n = query_row+1
-        grid = [[[0,0] for _ in range(i)] for i in range(1,n+1)]
+        grid = [[[0,0] for _ in range(i)] for i in range(1,n+2)]
         grid[0][0] = [0,poured]
         for i in range(n):
             for j in range(i+1):
                 fil,bal = grid[i][j]
                 n_fil = min(1, fil + bal)
                 grid[i][j][0] = n_fil
-                if i==query_row:
-                    continue
+                if i==query_row and j==query_glass:
+                    return n_fil
                 bal -= n_fil - fil
                 grid[i+1][j+1][1] += bal/2
                 grid[i+1][j][1] += bal/2
