@@ -71,6 +71,10 @@ class Solution:
         :rtype: int
         """
 
+        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+        # BFS Solution; Unable to guess the complexity
+        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
         def swap_tuple(tup, gap, dest):
             tmp = list(tup)
             tmp[gap], tmp[dest] = tmp[dest], tmp[gap]
