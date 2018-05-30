@@ -53,11 +53,13 @@ class Solution:
         :type arr: List[int]
         :rtype: int
         """
-        needed = 0
+        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+        # O(n) time / O(1) space solution
+        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+        needed = -1
         ans = 0
         for idx, val in enumerate(arr):
             needed = max(needed, val)
             if needed == idx:
                 ans+=1
-
         return ans
