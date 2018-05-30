@@ -52,22 +52,33 @@ class Solution:
         :type A: List[int]
         :rtype: bool
         """
+
+        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+        # Extremely fast solution at
+        # https://leetcode.com/problems/global-and-local-inversions/discuss/113651/Python-easy-understanding-solution!
+        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+        n = len(A)
+        for i in range(n):
+            if abs(i-A[i]) > 1:
+                return False
+        return True
+
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
         # Generalized solution; O(n) time https://leetcode.com/problems/global-and-local-inversions/discuss/113661/Generalize-to-any-integer-array-(not-necessarily-a-0-greaterN-permutation)
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-        n = len(A)
-        if n <= 1:
-            return True
-        i=1
-        while i < n:
-            if A[i-1] > A[i]:
-                A[i-1], A[i] = A[i], A[i-1]
-                i+=1
-            i+=1
-        for i in range(1,n):
-            if A[i] < A[i-1]:
-                return False
-        return True
+        # n = len(A)
+        # if n <= 1:
+        #     return True
+        # i=1
+        # while i < n:
+        #     if A[i-1] > A[i]:
+        #         A[i-1], A[i] = A[i], A[i-1]
+        #         i+=1
+        #     i+=1
+        # for i in range(1,n):
+        #     if A[i] < A[i-1]:
+        #         return False
+        # return True
 
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
         # O(nlogn) solution
