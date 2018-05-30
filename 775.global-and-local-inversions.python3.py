@@ -54,6 +54,7 @@ class Solution:
         """
 
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+        # Idea : to check if local inversions can keep up with global inversion
         # Extremely fast solution at
         # https://leetcode.com/problems/global-and-local-inversions/discuss/113651/Python-easy-understanding-solution!
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
