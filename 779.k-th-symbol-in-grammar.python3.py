@@ -52,4 +52,4 @@ class Solution:
         :type K: int
         :rtype: int
         """
-        return bin(K-1).count('1')%2
+        return bin(K-1).count('1')&1
