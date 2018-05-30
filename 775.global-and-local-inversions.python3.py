@@ -52,12 +52,33 @@ class Solution:
         :type A: List[int]
         :rtype: bool
         """
+        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+        # Generalized solution; O(n) time https://leetcode.com/problems/global-and-local-inversions/discuss/113661/Generalize-to-any-integer-array-(not-necessarily-a-0-greaterN-permutation)
+        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
         n = len(A)
-        A.append(n)
-        li = gi = 0
-        seen = [n]
-        for i in range(n-1,-1,-1):
-            li += A[i] > A[i+1]
-            gi += bisect_left(seen, A[i])
-            insort(seen, A[i])
-        return li == gi
+        if n <= 1:
+            return True
+        i=1
+        while i < n:
+            if A[i-1] > A[i]:
+                A[i-1], A[i] = A[i], A[i-1]
+                i+=1
+            i+=1
+        for i in range(1,n):
+            if A[i] < A[i-1]:
+                return False
+        return True
+
+        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+        # O(nlogn) solution
+        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+        # n = len(A)
+        # A.append(n)
+        # li = gi = 0
+        # seen = [n]
+        # for i in range(n-1,-1,-1):
+        #     li += A[i] > A[i+1]
+        #     gi += bisect_left(seen, A[i])
+        #     insort(seen, A[i])
+        # return li == gi
