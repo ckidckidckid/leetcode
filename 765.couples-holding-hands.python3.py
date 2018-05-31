@@ -57,7 +57,7 @@ class Solution:
             comp = row[i] ^ 1
             if row[i+1] != comp:
                 pos = table[comp]
-                table[row[i+1]], table[comp] = pos, i+1
+                table[row[i+1]] = pos
                 row[i+1], row[pos] = row[pos], row[i+1]
                 ans+=1
         return ans
