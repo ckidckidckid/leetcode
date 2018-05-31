@@ -56,6 +56,5 @@ class Solution:
         primes = {2,3,5,7,11,13,17,19}
         ans = 0
         for n in range(L, R+1):
-            if bin(n).count('1') in primes:
-                ans+=1
+            ans += bin(n).count('1') in primes
         return ans
