@@ -38,6 +38,8 @@ class Solution:
         :type S: str
         :rtype: List[int]
         """
+        # Two pointer method
+        
         table = [0]*26
         for idx, c in enumerate(S):
             table[ord(c)-ord('a')] = idx
