@@ -50,6 +50,10 @@ class Solution:
         :type target: int
         :rtype: int
         """
+        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+        # There exists a O(1) solution too :(  . .
+        # The below solution is O(n); Original Idea
+        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
         reach = 1
         target = abs(target)
         for i in range(1,target+2):
