@@ -90,6 +90,7 @@ class Solution:
         if len(bottom) == 1:
             return True
         q = [bottom]
+        seen = {bottom}
         while q:
             s = q.pop()
             ns = []
@@ -104,6 +105,7 @@ class Solution:
                 for ss in nss:
                     if len(ss) == 1:
                         return True
-                    else:
+                    elif ss not in seen:
+                        seen.add(ss)
                         q.append(ss)
         return False
