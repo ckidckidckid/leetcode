@@ -89,7 +89,7 @@ class Solution:
             table[key].append(value)
         if len(bottom) == 1:
             return True
-        q = [bottom]
+        q = deque([bottom])
         seen = {bottom}
         while q:
             s = q.pop()
