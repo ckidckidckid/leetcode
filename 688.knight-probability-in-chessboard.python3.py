@@ -62,6 +62,11 @@ class Solution:
         :type c: int
         :rtype: float
         """
+        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+        # Same Strategy; With Memoization ; Accepted O(KN^2) ??
+        # https://leetcode.com/problems/knight-probability-in-chessboard/solution/
+        # I think it should be 8^k
+        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
         def helper(x,y,moves):
             ans = 0
             key = (x,y,moves)
