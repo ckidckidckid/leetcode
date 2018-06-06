@@ -79,29 +79,23 @@
 from collections import deque
 class Solution:
     def openLock(self, deadends, target):
-        marker, depth = 'x', 0
-        visited, q, deadends = set(), deque(['0000', marker]), set(deadends)
-
+        """
+        :type deadends: List[str]
+        :type target: str
+        :rtype: int
+        """
+        def generate_conf(conf, d):
+            return [(conf[:i] + str((int(conf[i])+off)%10) + conf[i+1:], d) for off in (+1, -1) for i,c in enumerate(conf)]
+        deadends = set(deadends)
+        begin = '0000'
+        q = deque()
+        q.append((begin,0))
+        visited = set()
         while q:
-            node = q.popleft()
-            if node == target:
-                return depth
-            if node in visited or node in deadends:
-                continue
-            if node == marker and not q:
-                return -1
-            if node == marker:
-                q.append(marker)
-                depth += 1
-            else:
-                visited.add(node)
-                q.extend(self.successors(node))
+            conf, num = q.popleft()
+            if conf == target:
+                return num
+            if conf not in visited and conf not in deadends:
+                visited.add(conf)
+                q.extend(generate_conf(conf, num+1))
         return -1
-
-    def successors(self, src):
-        res = []
-        for i, ch in enumerate(src):
-            num = int(ch)
-            res.append(src[:i] + str((num - 1) % 10) + src[i+1:])
-            res.append(src[:i] + str((num + 1) % 10) + src[i+1:])
-        return res
