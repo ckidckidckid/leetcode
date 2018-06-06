@@ -54,7 +54,6 @@ class Solution:
                 continue
             visited.add(node)
             for child, child_dist in graph[node].items():
-                if child not in visited:
-                    distance[child] = min(distance[child], child_dist+dist)
-                    heapq.heappush(q, (distance[child], child))
+                distance[child] = min(distance[child], child_dist+dist)
+                heapq.heappush(q, (distance[child], child))
         return max(distance) if max(distance) < float('inf') else -1
