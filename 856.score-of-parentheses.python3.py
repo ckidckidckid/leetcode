@@ -71,20 +71,41 @@ class Solution:
         :type S: str
         :rtype: int
         """
-        f,s,t = 0,1,2
-        S = list(S)
-        while len(S) > 1:
-            if S[f] == '(' and S[s] == ')':
-                S = S[:f]  + [1] + S[s+1:]
-                f,s,t = 0,1,2
-            elif type(S[f]) == int and type(S[s]) == int:
-                S = S[:f]  + [S[f] + S[s]] + S[s+1:]
-                f,s,t = 0,1,2
-            elif S[f] == '(' and type(S[s]) == int and S[t] == ')':
-                S = S[:f]  + [S[s]*2] + S[t+1:]
-                f,s,t = 0,1,2
+        #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #
+        #  Accepted, but not effecient
+        #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #
+
+        # f,s,t = 0,1,2
+        # S = list(S)
+        # while len(S) > 1:
+        #     if S[f] == '(' and S[s] == ')':
+        #         S = S[:f]  + [1] + S[s+1:]
+        #         f,s,t = 0,1,2
+        #     elif type(S[f]) == int and type(S[s]) == int:
+        #         S = S[:f]  + [S[f] + S[s]] + S[s+1:]
+        #         f,s,t = 0,1,2
+        #     elif S[f] == '(' and type(S[s]) == int and S[t] == ')':
+        #         S = S[:f]  + [S[s]*2] + S[t+1:]
+        #         f,s,t = 0,1,2
+        #     else:
+        #         f+=1
+        #         s+=1
+        #         t+=1
+        # return S[0] if len(S) > 0 else 0
+
+        #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #
+        # Props to approach 2 in
+        # https://leetcode.com/problems/score-of-parentheses/discuss/141777/C++JavaPython-Concise-O(1)-Space
+        # OR
+        # https://leetcode.com/problems/score-of-parentheses/discuss/141848/C++-O(1)spaceO(n)time.
+        #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #
+        layers = 0
+        ans = 0
+        for i in range(len(S)):
+            if S[i] == '(':
+                if S[i+1] == ')':
+                    ans += 1<<layers
+                layers+=1
             else:
-                f+=1
-                s+=1
-                t+=1
-        return S[0] if len(S) > 0 else 0
+                layers-=1
+        return ans
