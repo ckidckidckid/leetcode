@@ -56,6 +56,10 @@
 from bisect import insort
 class ExamRoom:
 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+    # O(n) seat/leave: where n --> number of students
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
     def __init__(self, N):
         """
         :type N: int
