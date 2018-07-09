@@ -98,7 +98,7 @@ class Solution:
         num_in_acc = 0
         ans = []
         for word in words:
-            if not num_in_acc + len(word) - 1 < maxWidth:
+            if num_in_acc + len(word) - 1 >= maxWidth:
                 num_in_acc -= 1
                 extra_spaces = maxWidth - num_in_acc
                 uniform_add = (extra_spaces // (len(acc)-1)) if len(acc) > 1 else 0
