@@ -65,7 +65,7 @@ class Solution:
                     if ans:
                         break
                 else:
-                    ans = ans or (n1 + n2 == tn and helper(n2, tn, s[i+1:], True))
+                    ans = ans or (n1 + n2 == tn and helper(n2, tn, s[i+1:], n1 is not None))
                     if ans:
                         break
             return ans
