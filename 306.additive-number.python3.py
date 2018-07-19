@@ -51,23 +51,11 @@ class Solution:
         def helper(n1, n2, s, valid):
             if n1 is not None and n2 is not None and s == '':
                 return valid
-            ans = False
             for i in range(len(s)):
                 tn = int(s[:i+1])
                 if tn > 0 and s[0] == '0':
                     break
-                if n1 is None and n2 is None:
-                    ans = ans or helper(n2, tn, s[i+1:], False)
-                    if ans:
-                        break
-                elif n1 is None and n2 is not None:
-                    ans = ans or helper(n2, tn, s[i+1:], False)
-                    if ans:
-                        break
-                else:
-                    ans = ans or (n1 + n2 == tn and helper(n2, tn, s[i+1:], n1 is not None))
-                    if ans:
-                        break
-            return ans
-
+                if (n1 is None or n1 + n2 == tn) and helper(n2, tn, s[i+1:], n1 is not None):
+                    return True
+            return False
         return helper(None, None, num, False)
