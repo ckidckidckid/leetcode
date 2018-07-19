@@ -57,7 +57,7 @@ class Solution:
                 if tn > 0 and s[0] == '0':
                     break
                 if n1 is None and n2 is None:
-                    ans = ans or helper(None, tn, s[i+1:], False)
+                    ans = ans or helper(n2, tn, s[i+1:], False)
                     if ans:
                         break
                 elif n1 is None and n2 is not None:
